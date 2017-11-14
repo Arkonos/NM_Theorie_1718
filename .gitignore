@@ -1,22 +1,9 @@
-*.zip
-
-Datenblaetter
-
-Flowchart/*.eps
-
-FormulareDokumente
-
-OEWF
-
-Papers
-
-Stuff
-
-Vorlagen
-
-pics
-
-Excel/~*
+## Numerik
+Skript
+ue*.pdf
+.m~
+P*.m
+Lösung
 
 ## Latex
 # Libraries
