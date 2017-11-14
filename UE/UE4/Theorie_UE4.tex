@@ -1,0 +1,157 @@
+% !TeX spellcheck = de_AT_frami
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{txfonts}
+\usepackage{xcolor}
+\usepackage{geometry}
+\geometry{margin= 2cm}
+
+\begin{document}
+	\pagenumbering{gobble}
+	\section*{4. Numerik Übungen 2017/18}
+	\paragraph{T5}\mbox{}\\
+	\textbf{Führen Sie eine Rundungsfehleranalyse für die zentrale Differenz $\frac{f(x+h)-f(x-h)}{2h}$ durch.} \\
+	Analog zu \emph{2.2 Rundungsfehler} S20.
+	\begin{align*}
+		\tilde{f}'_h(x) &= rd\bigl(\frac{{
+				\color{red}rd(}{\color{green}rd(}f({\color{orange}rd(}x+h{\color{orange})}){\color{green})}
+				-{\color{green}rd(}f({\color{orange}rd(}x-h{\color{orange})}{\color{green})}{\color{red})}}
+				{2h}\bigr)  \\
+			&= rd\bigl(\frac{{
+					\color{red}rd(}{\color{green}rd(}f((x+h){\color{orange}(1+\varepsilon_1)}){\color{green})}
+				-{\color{green}rd(}f((x-h){\color{orange}(1+\varepsilon_2)}){\color{green})}{\color{red})}}
+			{2h}\bigr)  \\
+			&= rd\bigl(
+				 \frac{
+					{\color{red}rd(} f((x+h){\color{orange}(1+\varepsilon_1)}){\color{green}(x+\varepsilon_3)}
+					-f((x-h){\color{orange}(1+\varepsilon_2)}){\color{green}(1+\varepsilon_4)}{\color{red})}
+				  }
+				 {2h}
+			    \bigr)  \\
+			&= rd\bigl(
+			\frac{
+				{\color{red}(}f((x+h){\color{orange}(1+\varepsilon_1)}){\color{green}(x+\varepsilon_3)}
+				-f((x-h){\color{orange}(1+\varepsilon_2)}){\color{green}(1+\varepsilon_4)}{\color{red})(1+\varepsilon_5)}
+			}
+			{2h}
+			\bigr)  \\
+			&= \frac{
+				{\color{red}(}f((x+h){\color{orange}(1+\varepsilon_1)}){\color{green}(x+\varepsilon_3)}
+				-f((x-h){\color{orange}(1+\varepsilon_2)}){\color{green}(1+\varepsilon_4)}{\color{red})(1+\varepsilon_5)}
+			}
+			{2h} \bigl(1+\varepsilon_6\bigr)
+	\end{align*}
+	Durch
+	\begin{align*}
+		(1+\varepsilon_6)&{\color{red}(1+\varepsilon_5)}{\color{green}(1+\varepsilon_\text{i})} \\
+		(1+\varepsilon_6)&(1 + \varepsilon_5+\varepsilon_\text{i}+\varepsilon_5\varepsilon_\text{i})\\
+		1 + \varepsilon_5 + \varepsilon_\text{i} + \varepsilon_5& \varepsilon_\text{i} +\varepsilon_6 + \varepsilon_6 \varepsilon_5 + \varepsilon_\text{i} \varepsilon_6 + \varepsilon_\text{i} \varepsilon_5 \varepsilon_6
+	\end{align*}
+	folgt mit der Vereinfachung
+	\begin{align*}
+		\tilde{\varepsilon}_\text{i}&=\varepsilon_\text{i}+\varepsilon_5+\varepsilon_6, i=3,4\\
+		1 + \tilde{\varepsilon}_\text{i} + &\underbrace{\varepsilon_5 \varepsilon_\text{i}  + \varepsilon_6 \varepsilon_5 + \varepsilon_\text{i} \varepsilon_6 + \varepsilon_\text{i} \varepsilon_5 \varepsilon_6}_{\mathcal{O}(eps^2)} \\
+		(1+\varepsilon_6)&{\color{red}(1+\varepsilon_5)}{\color{green}(1+\varepsilon_\text{i})} = 1 + \tilde{\varepsilon}_\text{i} + \mathcal{O}(eps^2)
+	\end{align*}
+	und damit
+	\begin{align*}
+		\tilde{f}'_h(x) &=\frac{f((x+h){\color{orange}(1+\varepsilon_1)})( 1 + \tilde{\varepsilon}_3 + \mathcal{O}(eps^2))-f((x-h){\color{orange}(1+\varepsilon_2)})( 1 + \tilde{\varepsilon}_4 + \mathcal{O}(eps^2))}{2h}.
+	\end{align*}
+	Mit der Taylor Annäherung $ f(x+h) = f(x)+hf'(x)+\mathcal{O}(2h) $ und der Umformung
+	\begin{align*}
+		f((x+h)(1+\varepsilon_3)) = f(x+h+\varepsilon_3(x+h)) \\
+		f((x-h)(1+\varepsilon_4)) = f(\underbrace{x-h}_x+\underbrace{\varepsilon_4(x-h)}_h)
+	\end{align*}
+	erhält man
+	\begin{align*}
+		f((x+h)(1+\varepsilon_3)) = f(x+h) + \varepsilon_3(x+h) f'(x+h) + \mathcal{O}(\varepsilon_3^2) \\
+		f((x-h)(1-\varepsilon_4)) = f(x-h) + \varepsilon_4(x-h) f'(x-h) + \mathcal{O}(\varepsilon_4^2)
+	\end{align*}
+	Hiermit kann man $\tilde{f}'_h(x)$ umformen zu
+	\begin{align*}
+		\tilde{f}'_h(x) =& \frac{1}{2h}\biggl[ \bigl( f(x+h)+\varepsilon_1 (x+h) f'(x+h) + \mathcal{O}(\varepsilon_1^2) \bigr) \bigl( 1 + \tilde{\varepsilon}_3 + \mathcal{O}(eps^2)  \bigr) \\		
+		&-\;\:\bigl( f(x-h)+\varepsilon_2 (x-h) f'(x-h) + \mathcal{O}(\varepsilon_3^2) \bigr) \bigl( 1 + \tilde{\varepsilon}_4 + \mathcal{O}(eps^2)  \bigr)
+		\biggr] \\
+		=& \frac{1}{2h}\biggl[\bigl(f(x+h)+\varepsilon_1 (x+h) f'(x+h) + \mathcal{O}(\varepsilon_1^2)\bigr)\\
+		&+\tilde{\varepsilon}_3 f(x+h)+\tilde{\varepsilon}_3\varepsilon_1 (x+h) f'(x+h) \\
+		&+\tilde{\varepsilon}_3\mathcal{O}(\varepsilon_1^2) + \mathcal{O}(eps^2)(\dots)\\
+		&-\bigl( f(x-h)+\varepsilon_2 (x-h) f'(x-h) + \mathcal{O}(\varepsilon_3^2)\bigr)\bigl( 1 + \tilde{\varepsilon}_4 + \mathcal{O}(eps^2)\bigr) \biggr].
+	\end{align*}
+	Wegen $|\varepsilon_i|\leqslant eps$ können alle Terme höherer Ordnung in $\varepsilon$ und $eps$ zu $\mathcal{O}(eps^2)$ zusammengefasst werden.  
+	\begin{align*}
+		\tilde{f}'_h(x) &= \frac{1}{2h}\biggl[ f(x+h)+\varepsilon_1(x+h)f'(x+h)+\tilde{\varepsilon}_3f(x+h)+\mathcal{O}(eps^2) \\
+		&\quad\:\,-\Bigl(f(x-h)+\varepsilon_2(x-h)f'(x-h)+\tilde{\varepsilon}_4f(x-h)+\mathcal{O}(eps^2)\Bigr)\biggr] \\
+		&=\frac{f(x+h)-f(x-h)}{2h}+\frac{1}{2h}\mathcal{O}(\varepsilon)+\frac{1}{2h}\mathcal{O}(eps^2) \\
+		&=\frac{f(x+h)-f(x-h)}{2h}+\frac{1}{2h}\mathcal{O}(eps^2)
+	\intertext{Der Gesamtfehler err(h)}
+		\text{err(h)} &= \tilde{f}'_h(x) - f(x) \\
+		&= \Bigl[ \frac{f(x+h)-f(x-h)}{2h}+\frac{1}{2h}\mathcal{O}(eps^2) \Bigr] - 
+		\Bigl[ \frac{f(x+h)-f(x-h)}{2h}-\frac{h^2}{6}f'''(\xi) \Bigr] \\
+		\intertext{eribt sich aus Verfahrensfeler V(h) und Rundungsfehler R(h)}
+		&= \underbrace{\frac{h^2}{6}f'''(\xi)}_{V(h)}  + \underbrace{\frac{1}{2h}\mathcal{O}(eps^2)}_{R(h)}
+	\end{align*}
+	
+	
+	
+	
+	\newpage
+	\paragraph{T6}\mbox{}\\
+	\textbf{Gegeben sei eine Funktion $f:\varmathbb{R}^2\rightarrow \varmathbb{R}: (x_1,x_2)\rightarrow f(x_1,x_2)$. Wie lassen sich die zweiten partiellen Ableitungen $$
+		\frac{\partial^2 f}{\partial x_1^2}, \quad
+		\frac{\partial^2 f}{\partial x_2^2}, \quad
+		\frac{\partial^2 f}{\partial x_1^2 \partial x_2^2}
+	$$ numerisch berechnen?} \\
+	Ausgehend vom eindimensionalen Verfahren der zweiten Ableitung
+	\begin{align*}
+		f''(x)=\frac{f(x+h)-2f(x)+f(x-h)}{h^2}
+	\end{align*}
+	lautet das Verfahren der zweiten Ableitung f''(x) für mehrere Variablen bei gleicher Schrittweite h in alle Richtungen allgemein
+	\begin{align*}
+		\frac{\partial^2 \textbf{f}}{\partial x_i^2}(\textbf{x}) = \frac{\textbf{f}(x_1,\dots, x_{i-1},x_i+h,x_{i+1},\dots x_n)-\textbf{f}(\textbf{x})+\textbf{f}(x_1,\dots, x_{i-1},x_i-h,x_{i+1},\dots x_n)}{h^2}.
+	\end{align*}
+	Mit $\textbf{x} = [x_1, x_2]$ ergibt sich
+	\begin{align*}
+		\frac{\partial^2 \textbf{f}}{\partial x_1^2}(\textbf{x}) &= \frac{\textbf{f}(x_1+h,x_2)-\textbf{f}(x_1, x_2)+\textbf{f}(x_1-h,x_2)}{h^2}\\
+		\frac{\partial^2 \textbf{f}}{\partial x_2^2}(\textbf{x}) &= \frac{\textbf{f}(x_1,x_2+h)-\textbf{f}(x_1, x_2)+\textbf{f}(x_1,x_2-h)}{h^2}\\
+		\frac{\partial^2 \textbf{f}}{\partial x_1\partial x_2}(\textbf{x}) &=\frac{\textbf{f}(x_1+h,x_2+h)-\textbf{f}(x_1+h, x_2-h)-\textbf{f}(x_1-h, x_2+h)+\textbf{f}(x_1-h,x_2-h)}{4h^2}.
+	\end{align*}
+	\textbf{Herleitung für Letzteres} \\
+	Einfachste gemischte Ableitung
+	\begin{align*}
+		\frac{\partial^2 f}{\partial x \partial y}(a,b)
+	\end{align*}
+	Wenn wir
+	\begin{align}\label{1}
+		g(a)=\frac{\partial f}{\partial y}(a,b)
+	\end{align}
+	setzen, können wir die Annäherung
+	\begin{align*}
+		g'(a)\approx\frac{g(a+h)-g(a-h)}{2h}
+	\end{align*}
+	benützen. Durch einsetzen in (\ref{1}) erhalten wir
+	\begin{align}\label{2}
+		\frac{\partial^2 f}{\partial x \partial y}(a, b) \approx 
+		\frac{
+			\frac{\partial f}{\partial y}(a+h,b)-
+			\frac{\partial f}{\partial y}(a-h,b)
+		}{2h}.
+	\end{align}
+	Gleiche Abschätzungen können wir nun für partiellen Ableitungen ersten Grades aus (\ref{2}) treffen.
+	\begin{align*}
+		\frac{\partial f}{\partial y}(a+h,b) \approx
+		\frac{f(a+h,b+h)-f(a+h,b-h)}{2h} \\
+		\frac{\partial f}{\partial y}(a-h,b) \approx
+		\frac{f(a-h,b+h)-f(a-h,b-h)}{2h}
+	\end{align*}
+	Eingesetzt in (\ref{2}) ergibt sich die gewünschte Annäherung
+	\begin{align*}
+		\frac{\partial^2 f}{\partial x \partial y}(a, b) \approx
+		\frac{f(a+h,b+h)-f(a+h,b-h)-f(a-h,b+h)+f(a-h,b-h)
+		}{4h^2}
+	\end{align*}
+\end{document}
