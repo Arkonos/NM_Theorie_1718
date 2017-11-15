@@ -3,6 +3,7 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{ucs}
 \usepackage{amsmath}
+\usepackage{setspace}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -175,7 +176,7 @@
 			\end{array}
 		\end{align*}
 	\newpage
-	Schritt 2: Berechnung des Differenzenschema. \\
+	Schritt 2: Berechnung des Differenzenschema \\
 	Wie gewohnt mit der Merkregel des Newtonschen Interpolationspolynom (S. 38) \\
 	Bleibt nach dem Grenzübergang $h \rightarrow 0$ nur $\frac{0}{0}$ muss der Wert mit einer bekannten Ableitung in der Form $\frac{f^{(g)}(x)}{g!}$ ersetzt werden.
 	
@@ -303,8 +304,97 @@
 	\paragraph{T11}\mbox{}\\
 	\textbf{%
 		a) Schreiben Sie für natürliche Splines das zugehörige lineare Gleichungssystem für die Momente $M_0, \dots, M_n$ in Matrizen-Schreibweise an.
-	}\\ \\
-	
+	}\\
+		Nach Definition 3.9, S. 62:\\
+		$\mbox{}\quad$ Natürlicher Spline: $s''(x_0)=s(x_n)=0$ \\
+		$\mbox{}\quad$ Die Momente an beiden Enden des Balken sind 0 $\Rightarrow (3.90) M_0=0 \text{ und } M_n=0$ \\
+		Das hergeleitete lineare Gleichungssystem für die Momente $M_i$ lautet
+		\begin{align*}
+			\frac{h_i}{6}M_i+\frac{h_i+h_{i+1}}{3}M_{i+1}+\frac{h_{i+1}}{6}M_{i+2} 
+				= \frac{y_{i+2}-y_{i+1}}{h_{i+1}}-\frac{y_{i+1}-y_i}{h_i}, \quad i = 0,\dots n-2
+		\end{align*}
+		Bsp. n=7 \\
+		Um die Form einer Tridiagonalmatrix zu erreichen, müssen $M_0$ und $M_7$ gestrichen werden.
+		\begin{align*}\frac{1}{6}
+		\begin{bmatrix}
+			\cancel{h_0 M_0}+2(h_0+h_{1})M_{1}+h_{1} M_{2} \\
+			h_1 M_1+2(h_1+h_{2})M_{2}+h_{2} M_{3} \\
+			h_2 M_2+2(h_2+h_{3})M_{3}+h_{3} M_{4} \\
+			h_3 M_3+2(h_3+h_{4})M_{4}+h_{4} M_{5} \\
+			h_4 M_4+2(h_4+h_{5})M_{5}+h_{5} M_{6} \\
+			h_5 M_5+2(h_5+h_{6})M_{6}+\cancel{h_{6} M_{7}}
+		\end{bmatrix} = \frac{1}{6} 
+		\begingroup % keep the change local
+		\setlength\arraycolsep{0pt}
+		\begin{bmatrix}
+			2(h_0+h_1) & h_1        & 0          & 0          & 0          & 0          \\
+			h_1        & 2(h_1+h_2) & h_2        & 0          & 0          & 0          \\
+			0          & h_2        & 2(h_2+h_3) & h_3        & 0          & 0          \\
+			0          & 0          & h_3        & 2(h_3+h_4) & h_4        & 0          \\
+			0          & 0          & 0          & h_4        & 2(h_4+h_5) & h_5        \\
+			0          & 0          & 0          & 0          & h_5        & 2(h_5+h_6)
+		\end{bmatrix}
+		\endgroup
+			\begin{bmatrix}
+				\cancel{M_0} \\
+				M_1 \\
+				M_2 \\
+				M_3 \\
+				M_4 \\
+				M_5 \\
+				M_6 \\
+				\cancel{M_7}
+			\end{bmatrix}
+			=
+			\begin{bmatrix}
+				\frac{y_2-y_1}{h_1}-\frac{y_1-y_0}{h_0} \\
+				\frac{y_3-y_2}{h_2}-\frac{y_2-y_1}{h_1} \\
+				\frac{y_4-y_3}{h_3}-\frac{y_3-y_2}{h_2} \\
+				\frac{y_5-y_4}{h_4}-\frac{y_4-y_3}{h_3} \\
+				\frac{y_6-y_5}{h_5}-\frac{y_5-y_4}{h_4} \\
+				\frac{y_7-y_6}{h_6}-\frac{y_6-y_5}{h_5}
+			\end{bmatrix}
+		\end{align*}
+		Allgemein
+		\begin{align*}
+		\frac{1}{6} 
+		\begingroup % keep the change local
+		\setlength\arraycolsep{3pt}
+		\setstretch{2.0}
+		\begin{bmatrix}
+			2(h_0+h_1) & h_1        & 0          &        &                &         &         &                    &  \\
+			h_1        & 2(h_1+h_2) & h_2        & 0      &                &         &         &                    &  \\
+			0          & h_2        & 2(h_2+h_3) & h_3    & 0              &         &         &                    &  \\
+			           & \ddots     & \ddots     & \ddots & \ddots         & \ddots  &         &                    &  \\
+			           &            & 0          & h_i    & 2(h_i+h_{i+1}) & h_{i+1} & 0       &                    &  \\
+			           &            &            & \ddots & \ddots         & \ddots  & \ddots  & \ddots             &  \\
+			           &            &            &        &                & 0       & h_{n-3} & 2(h_{n-3}+h_{n-2}) & h_{n-2}            \\
+			           &            &            &        &                &         & 0       & h_{n-2}            & 2(h_{n-2}+h_{n-1})
+		\end{bmatrix}
+		\endgroup
+		\begin{bmatrix}
+			M_1     \\
+			M_2     \\
+			M_3     \\
+			\vdots  \\
+			M_i     \\
+			\vdots  \\
+			M_{i-2} \\
+			M_{i-1}
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			\frac{y_{2}-y_{1}}{h_{1}}-\frac{y_{1}-y_{0}}{h_0}           \\
+			\frac{y_{3}-y_{2}}{h_{2}}-\frac{y_{2}-y_{1}}{h_1}           \\
+			\frac{y_{4}-y_{3}}{h_{3}}-\frac{y_{3}-y_{2}}{h_2}           \\
+			\vdots \\
+			\frac{y_{i+2}-y_{i+1}}{h_{i+1}}-\frac{y_{i+1}-y_i}{h_i}     \\
+			\vdots \\
+			\frac{y_{n-1}-y_{n-2}}{h_{n-2}}-\frac{y_{n-2}-y_{n-3}}{h_{n-3}}   \\
+			\frac{y_{n}-y_{n-1}}{h_{n-1}}-\frac{y_{n-1}-y_{n-2}}{h_{n-2}}
+		\end{bmatrix}
+		\end{align*}			
+			
 	\textbf{%
 		b) Stellen Sie die beiden "fehlenden" Gleichungen für die Momente $M_0, \dots, M_n$ für periodische Splines mit $s(x_0) = s(x_n)$, $s′(x_0) = s′(x_n)$ und $s''(x_0)=s''(x_n)$ auf. \\
 		Wie sieht die Matrix des gesamten Gleichungssystems aus? Ist sie auch eine Tridiagonalmatrix?
