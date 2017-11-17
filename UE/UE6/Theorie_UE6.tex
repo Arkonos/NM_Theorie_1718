@@ -303,7 +303,7 @@
 	
 	\paragraph{T11}\mbox{}\\
 	\textbf{%
-		a) Schreiben Sie für natürliche Splines das zugehörige lineare Gleichungssystem für die Momente $M_0, \dots, M_n$ in Matrizen-Schreibweise an.
+		a) Schreiben Sie für natürliche Splines das zugehörige lineare Gleichungssystem für die Momente $\pmb{M_0, \dots, M_n}$ in Matrizen-Schreibweise an.
 	}\\
 		Nach Definition 3.9, S. 62:\\
 		$\mbox{}\quad$ Natürlicher Spline: $s''(x_0)=s(x_n)=0$ \\
@@ -379,24 +379,67 @@
 			\vdots  \\
 			M_i     \\
 			\vdots  \\
-			M_{i-2} \\
-			M_{i-1}
+			M_{n-2} \\
+			M_{n-1}
 		\end{bmatrix}
 		=
 		\begin{bmatrix}
-			\frac{y_{2}-y_{1}}{h_{1}}-\frac{y_{1}-y_{0}}{h_0}           \\
-			\frac{y_{3}-y_{2}}{h_{2}}-\frac{y_{2}-y_{1}}{h_1}           \\
-			\frac{y_{4}-y_{3}}{h_{3}}-\frac{y_{3}-y_{2}}{h_2}           \\
-			\vdots \\
-			\frac{y_{i+2}-y_{i+1}}{h_{i+1}}-\frac{y_{i+1}-y_i}{h_i}     \\
-			\vdots \\
-			\frac{y_{n-1}-y_{n-2}}{h_{n-2}}-\frac{y_{n-2}-y_{n-3}}{h_{n-3}}   \\
+			\frac{y_{2}-y_{1}}{h_{1}}-\frac{y_{1}-y_{0}}{h_0}               \\
+			\frac{y_{3}-y_{2}}{h_{2}}-\frac{y_{2}-y_{1}}{h_1}               \\
+			\frac{y_{4}-y_{3}}{h_{3}}-\frac{y_{3}-y_{2}}{h_2}               \\
+			\vdots                                                          \\
+			\frac{y_{i+2}-y_{i+1}}{h_{i+1}}-\frac{y_{i+1}-y_i}{h_i}         \\
+			\vdots                                                          \\
+			\frac{y_{n-1}-y_{n-2}}{h_{n-2}}-\frac{y_{n-2}-y_{n-3}}{h_{n-3}} \\
 			\frac{y_{n}-y_{n-1}}{h_{n-1}}-\frac{y_{n-1}-y_{n-2}}{h_{n-2}}
 		\end{bmatrix}
-		\end{align*}			
-			
+		\end{align*}	
+	\newpage
 	\textbf{%
-		b) Stellen Sie die beiden "fehlenden" Gleichungen für die Momente $M_0, \dots, M_n$ für periodische Splines mit $s(x_0) = s(x_n)$, $s′(x_0) = s′(x_n)$ und $s''(x_0)=s''(x_n)$ auf. \\
+		b) Stellen Sie die beiden "fehlenden" Gleichungen für die Momente $\pmb{M_0, \dots, M_n}$ für periodische Splines mit $\pmb{s(x_0) = s(x_n)}$, $\pmb{s′(x_0) = s′(x_n)}$ und $\pmb{s''(x_0)=s''(x_n)}$ auf. \\
 		Wie sieht die Matrix des gesamten Gleichungssystems aus? Ist sie auch eine Tridiagonalmatrix?
 	}
+		Auf S. 65 wird darauf hingewiesen, dass $s(x_0)=s(x_n)$ keine Bedingung für das Gleichungssystem ist. Die Punkte müssen bereits so gegeben sein! D.h. $s(x_0)=\underline{y_0=y_n}=s(x_n)$.
+		\begin{align}\tag{3.38}
+			s''_i(x)&=M_i+\frac{M_{i+1}-M_i}{h_i}(x-x_i), \quad x \in [x_i, x_{i+1}], \quad i=0,\dots,n-1
+        \end{align}
+        Einsetzen von $s''(x_0)=s''(x_n)$ in 3.38
+        \begin{align*}
+			s''_0(x_0)&=M_0+\frac{M_{1}-M_0}{h_0}(x_0-x_0) = M_1 \\ s''_{n-1}(x_n)&=M_{n-1}+\frac{M_{n}-M_{n-1}}{h_{n-1}}(x_n-x_{n-1}) \\
+            \\
+            M_1 &= M_{n-1}+\frac{M_{n}-M_{n-1}}{h_{n-1}}(x_n-x_{n-1}) \\
+            0 &= M_{n-1}+\frac{M_{n}-M_{n-1}}{h_{n-1}}(x_n-x_{n-1})-M_1
+		\end{align*}
+        Für $s′(x_0) = s′(x_n)$ muss in die Integrierte Gleichung
+        \begin{align}\tag{3.82}
+            s'_i(x)=M_i(x-x_i)+\frac{M_{i+1}-M_i}{2h_i}(x-x_i)^2+C_i
+        \end{align}
+        die Konstante $C_i$ eingesetzt werden
+        \begin{align}\tag{3.84}
+            C_i=\frac{y_{i+1}-y_i}{h_i}-\frac{h_i}{6}(2M_i+M_{i+1}).
+        \end{align}
+        Einsetzen in $s′(x_0) \text{ und } s′(x_n)$
+        \begin{align*}
+            s'_i(x)&=M_i(x-x_i)+\frac{M_{i+1}-M_i}{2h_i}(x-x_i)^2+\frac{y_{i+1}-y_i}{h_i}-\frac{h_i}{6}(2M_i+M_{i+1}) \\
+            s'_0(x_0)&=M_0(x_0-x_0)+\frac{M_1-M_0}{2h_0}(x_0-x_0)^2+\frac{y_1-y_0}{h_0}-\frac{h_0}{6}(2M_0+M_1) \\
+            s'_0(x_0)&=\frac{y_1-y_0}{h_0}-\frac{h_0}{6}(2M_0+M_1) \\
+            s_{n-1}′(x_n)&=M_{n-1}(x_n-x_{n-1})+\frac{M_n-M_{n-1}}{2h_{n-1}}(x_n-x_{n-1})^2+\frac{y_n-y_{n-1}}{h_{n-1}}-\frac{h_{n-1}}{6}(2M_{n-1}+M_n) \\
+            s_{n-1}′(x_n)&=M_{n-1}h_{n-1}+\frac{M_n-M_{n-1}}{2h_{n-1}}h_{n-1}^2+\frac{y_n-y_{n-1}}{h_{n-1}}-\frac{h_{n-1}}{6}(2M_{n-1}+M_n) \\
+            s_{n-1}′(x_n)&=\frac{h_{n-1}}{2}(M_{n-1}+M_n)+\frac{y_n-y_{n-1}}{h_{n-1}}-\frac{h_{n-1}}{6}(2M_{n-1}+M_n) \\
+            s_{n-1}′(x_n)&=\frac{h_{n-1}}{6}\left(3M_{n-1}+3M_n-2M_{n-1}+M_n\right)+\frac{y_n-y_{n-1}}{h_{n-1}}  \\
+            s_{n-1}′(x_n)&=\frac{h_{n-1}}{6}\left(M_{n-1}+4M_n\right)+\frac{y_n-y_{n-1}}{h_{n-1}} 
+        \end{align*}
+        Gleichsetzen
+        \begin{align*}
+            \frac{y_1-y_0}{h_0}-\frac{h_0}{6}(2M_0+M_1) &= \frac{h_{n-1}}{6}\left(M_{n-1}+4M_n\right)+\frac{y_n-y_{n-1}}{h_{n-1}}  \\
+           -\frac{h_0}{6}(2M_0+M_1)-\frac{h_{n-1}}{6}\left(M_{n-1}+4M_n\right)
+            &=
+            \frac{y_n-y_{n-1}}{h_{n-1}}-\frac{y_1-y_0}{h_0}
+        \end{align*}
+        Nun verwenden wir $s(x_n)=s(x_0) \rightarrow y_{n}=y_0$ und $s''(x_n)=s''(x_0) \rightarrow M_n=M_0$.
+        \begin{align*}
+            -\frac{h_0}{6}(2M_0+M_1)-\frac{h_{n-1}}{6}\left(M_{n-1}+4M_0\right)
+            &=
+            \frac{y_0-y_{n-1}}{h_{n-1}}-\frac{y_1-y_0}{h_0}
+        \end{align*}
 \end{document}
