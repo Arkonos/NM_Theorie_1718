@@ -64,11 +64,20 @@
     \textbf{%
         Berechnen Sie das Integral
         \begin{align*}
-            \int_{-1}^{2}\frac{1}{2+x}dx.
+            \pmb{\int_{-1}^{2}\frac{1}{2+x}dx}.
         \end{align*}
-        a) Exakt.
-        b) Mit der Quadraturformel aus Aufgabe (T12b) und Schrittweite $h=3$. \\
-        c) Mit der Quadraturformel aus Aufgabe (T12b) und Schrittweite $h=\frac{3}{2}$. \\
+        a) Exakt.}\\
+        Substitution mit $\xi=2+x$ und $du=d\xi$, wodurch sich die Grenzen verschieben zu $u=-1+2=1$ und $o=2+2=4$.
+        \begin{align*}
+            \int_{1}^{4}\frac{1}{\xi}d\xi = \text{log}(\xi)\arrowvert^4_1 = \text{log}(x+2)\arrowvert^2_{-1} = \text{log}(4)-\text{log}(1) = \text{log}\left(\frac{4}{1}\right)=\text{log}(4)\approx1.3863
+        \end{align*}
+        
+        \textbf{%
+        b) Mit der Quadraturformel aus Aufgabe (T12b) und Schrittweite $\pmb{h=3}$.
+        }\\
+    
+        \textbf{%
+        c) Mit der Quadraturformel aus Aufgabe (T12b) und Schrittweite $\pmb{h=\frac{3}{2}}$. \\
         Machen Sie eine Skizze mit den Knoten und Gewichten.
     }\\
 	
