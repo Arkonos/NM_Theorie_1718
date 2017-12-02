@@ -1,0 +1,66 @@
+% !TeX spellcheck = de_AT_frami
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage{amsmath}
+\usepackage{setspace}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{txfonts}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\epstopdfsetup{update}
+\geometry{margin= 2cm}
+\usepackage[makeroom]{cancel}
+\usepackage{multirow}
+\setlength\parindent{0pt}
+
+\usepackage{array}
+\usepackage{mathtools} %for minus signes in matrices
+
+\usepackage{amsmath,amsfonts,amssymb} % For math equations, theorems, sy
+\makeatletter
+\def\zz\ignorespaces{\@ifnextchar-{}{\phantom{-}}}
+\newcolumntype{R}{>{\zz}{r}}
+\makeatother
+
+
+\begin{document}
+	\pagenumbering{gobble}
+	\section*{9. Numerik Übungen 2017/18}
+	\paragraph{T15}\mbox{}\\
+	\textbf{%
+		Es sei $\mathbf{R = [2,6]\times[1,3]}$ ein Rechteck. Berechnen Sie das Integral $\mathbf{\iint\limits_R\frac{x}{y}dF}$, indem Sie in x- bzw. y- Richtung die Simpsonregel verwenden. Machen Sie auch eine Skizze (Rechteck, Knoten, Gewichte).
+	}\\
+
+
+	\paragraph{T16}\mbox{}\\
+	\textbf{%
+	Die Knoten $\mathbf{(0,0), (1,0), (0,1)}$ und die Gewichte $\mathbf{\frac{1}{6},\frac{1}{6},\frac{1}{6}}$ definieren eine Quadraturformel auf dem Einheitsdreieck $\mathbf{D=\left\lbrace (\xi,\eta) \in \mathbb{R}^2 \,;\, 0\leq\xi\leq 1,\, 0\leq\eta \leq1-\xi \right\rbrace}$.
+	}
+
+	\paragraph{T17}\mbox{}\\
+	\textbf{%
+		a) Berechnen Sie die LU-Zerlegung der Matrix A mit Spaltenpivotsuche für
+		\begin{align*}\mathbf{
+			A= \begin{bmatrix*}[R]
+				0   & 2   & 6  & 10 \\
+				3   & 6   & 9  & -3 \\
+				15  & 0   & 0  & 1  \\
+				-15 & -10 & -3 & 1
+			\end{bmatrix*}.}
+		\end{align*}
+	}\\
+	\textbf{%
+		b) Geben Sie auch die Permutationsmatrix P bzw. den Vektor \emph{IP}. \emph{IP(4)} soll das Vorzeichen für die Berechnung der Determinante erhalten.
+	}\\
+	\textbf{%
+		c) Berechnen Sie mit Hilfe der LU-Zerlegung die Determinante von A.
+	}\\
+	\textbf{%
+		d) Lösen Sie $\mathbf{Ax=b}$ für $\mathbf{b = \begin{bmatrix} 4 \\ -6 \\ -14  \\ -8 \end{bmatrix}}\,$ mit Hilfe der LU-Zerlegung.
+	}
+\end{document}
