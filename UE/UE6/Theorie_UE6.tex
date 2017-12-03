@@ -37,7 +37,7 @@
 	\section*{6. Numerik Übungen 2017/18}
 	\paragraph{T9}\mbox{}\\
 	\textbf{%
-		a) Prüfen Sie nach, ob die Formel (3.38) für die Lagrange-Polynome $\pmb{l_1}$ wirklich die Bedingung $\pmb{l_i(x_j)=\delta_{ij}}$ erfüllt.
+		a) Prüfen Sie nach, ob die Formel (3.38) für die Lagrange-Polynome $\mathbf{l_1}$ wirklich die Bedingung $\mathbf{l_i(x_j)=\delta_{ij}}$ erfüllt.
 	}\\
 	S. 47
 	\begin{align}\tag{3.37}
@@ -56,16 +56,16 @@
 	& \quad \text{Wahr, wenn } x_j \in x
 	\end{align*}
 	\textbf{%
-		b) Interpolieren Sie $\pmb{f(x)=6-4x+\frac{1}{2}x^3}$ an den Stützstellen $\pmb{x_k=k-3, k=0,\dots ,5}$, durch eine stückweise lineare Funktion $\pmb{s}$. Geben Sie dazu die gesuchte stückweise lineare Funktion $\pmb{s}$ als Linearkombination 
+		b) Interpolieren Sie $\mathbf{f(x)=6-4x+\frac{1}{2}x^3}$ an den Stützstellen $\mathbf{x_k=k-3, k=0,\dots ,5}$, durch eine stückweise lineare Funktion $\mathbf{s}$. Geben Sie dazu die gesuchte stückweise lineare Funktion $\mathbf{s}$ als Linearkombination 
 		\begin{align*}
-		\pmb{s(x) = \sum_{k=0}^{5}y_k\phi_k(x)}
+		\mathbf{s(x) = \sum\limits_{k=0}^{5}y_k\phi_k(x)}
 		\end{align*}
-		von Hutfunktionen $\pmb{\phi_k(x)}$ an. \\
-		Sie brauchen die Hutfunktionen $\pmb{\phi_k(x)}$ nicht explizit anzugeben, eine Skizze mit der Funktion $\pmb{f}$, der Interpolierenden $\pmb{s}$, allen auftretenden Hutfunktionen $\pmb{\phi_k(x)}$ und Vielfachen $\pmb{y_k\phi_k(x)}$ (mit Nummerierung) ist ausreichend. 
+		von Hutfunktionen $\mathbf{\phi_k(x)}$ an. \\
+		Sie brauchen die Hutfunktionen $\mathbf{\phi_k(x)}$ nicht explizit anzugeben, eine Skizze mit der Funktion $\mathbf{f}$, der Interpolierenden $\mathbf{s}$, allen auftretenden Hutfunktionen $\mathbf{\phi_k(x)}$ und Vielfachen $\mathbf{y_k\phi_k(x)}$ (mit Nummerierung) ist ausreichend. 
 	}	\\
 	S. 59
 	\begin{alignat*}{8}
-	x =& \begin{bmatrix}-3 & -2 & -1 &0& 1& 2 \end{bmatrix}, \qquad s(x)=\sum_{i=0}^{n}y_i\phi_i(x)
+	x =& \begin{bmatrix}-3 & -2 & -1 &0& 1& 2 \end{bmatrix}, \qquad s(x)=\sum\limits_{i=0}^{n}y_i\phi_i(x)
 	\end{alignat*}
 	\begin{align*}
 	\phi_i(x) &= \begin{cases}
@@ -105,9 +105,9 @@
 	
 	\paragraph{T10}\mbox{}\\
 	\textbf{%
-		Gegeben sind die Punkte $\pmb{(x_0,y_0)=(-1,2)}$, $\pmb{(x_1,y_1)=(0,3)}$ und $\pmb{(x_2,y_2)=(1,3)}$ sowie die Ableitungen $\pmb{y'_0=3}$, $\pmb{y'_1=2}$, $\pmb{y'_2=-3}$ und $\pmb{y''_1=4}$.\\
-		Bestimmen Sie ein Polynom $\pmb{p}$, sodass $\pmb{p(x_i)=y_i}$, $\pmb{p'(x_i)=y'_i}$, $\pmb{i=0,1,2}$, und $\pmb{p''(x_1)=y''_1}$.\\
-		Zeichnen Sie das Polynom $\pmb{p}$ und die Punkte in {\scshape Matlab}.
+		Gegeben sind die Punkte $\mathbf{(x_0,y_0)=(-1,2)}$, $\mathbf{(x_1,y_1)=(0,3)}$ und $\mathbf{(x_2,y_2)=(1,3)}$ sowie die Ableitungen $\mathbf{y'_0=3}$, $\mathbf{y'_1=2}$, $\mathbf{y'_2=-3}$ und $\mathbf{y''_1=4}$.\\
+		Bestimmen Sie ein Polynom $\mathbf{p}$, sodass $\mathbf{p(x_i)=y_i}$, $\mathbf{p'(x_i)=y'_i}$, $\mathbf{i=0,1,2}$, und $\mathbf{p''(x_1)=y''_1}$.\\
+		Zeichnen Sie das Polynom $\mathbf{p}$ und die Punkte in {\scshape Matlab}.
 	}\\
 	S. 54 \\
 	Allgemeines Differenzenschema für Hermite-Interpolation mit gegebenen Ableitungen vom Grad 2
@@ -303,7 +303,7 @@
 	
 	\paragraph{T11}\mbox{}\\
 	\textbf{%
-		a) Schreiben Sie für natürliche Splines das zugehörige lineare Gleichungssystem für die Momente $M_0, \dots, M_n$ in Matrizen-Schreibweise an.
+		a) Schreiben Sie für natürliche Splines das zugehörige lineare Gleichungssystem für die Momente $\mathbf{M_0, \dots, M_n}$ in Matrizen-Schreibweise an.
 	}\\
 		Nach Definition 3.9, S. 62:\\
 		$\mbox{}\quad$ Natürlicher Spline: $s''(x_0)=s(x_n)=0$ \\
@@ -396,7 +396,7 @@
 		\end{align*}			
 			
 	\textbf{%
-		b) Stellen Sie die beiden "fehlenden" Gleichungen für die Momente $M_0, \dots, M_n$ für periodische Splines mit $s(x_0) = s(x_n)$, $s′(x_0) = s′(x_n)$ und $s''(x_0)=s''(x_n)$ auf. \\
+		b) Stellen Sie die beiden "fehlenden" Gleichungen für die Momente $\mathbf{M_0, \dots, M_n}$ für periodische Splines mit $\mathbf{s(x_0) = s(x_n)}$, $\mathbf{s′(x_0) = s′(x_n)}$ und $\mathbf{s''(x_0)=s''(x_n)}$ auf. \\
 		Wie sieht die Matrix des gesamten Gleichungssystems aus? Ist sie auch eine Tridiagonalmatrix?
 	}
 \end{document}

@@ -26,17 +26,17 @@
 	\textbf{%
 		Berechnen Sie das Integral
 		\begin{align*}
-			\mathbf{\int_{0}^{2}\frac{1}{1+x}\text{dx}}
+			\mathbf{\int\limits_{0}^{2}\frac{1}{1+x}\text{dx}}
 		\end{align*}
-		mit der Trapezregel und schätzen Sie den Fehler mit Hilfe der Richardson-Extrapolation, d.h. bestimmen Sie für $\pmb{h=2}$ die Werte $\pmb{A(h)}$, $\pmb{A((h/2))}$ und est. Berechnen Sie auch $\pmb{Q_\text{extr.}(f)}$.
+		mit der Trapezregel und schätzen Sie den Fehler mit Hilfe der Richardson-Extrapolation, d.h. bestimmen Sie für $\mathbf{h=2}$ die Werte $\mathbf{A(h)}$, $\mathbf{A(h/2)}$ und est. Berechnen Sie auch $\mathbf{Q_\text{extr.}(f)}$.
 	}\\
 	Mit einem Auszug aus der Definition der Quadraturformel
 	\begin{align*}\tag{(4.12)}
-		I(g)=\int_{0}^{1}g(t)\text{dt} \approx \sum_{\text{i}=1}^{s}b_ig(c_i)=:Q(g)
+		I(g)=\int\limits_{0}^{1}g(t)\text{dt} \approx \sum\limits_{\text{i}=1}^{s}b_ig(c_i)=:Q(g)
 	\end{align*}
 	folgt analog zu Bsp. 4.2 (S. 79) mit der Trapetzregel: $s = 2$, $c_i=[0 \quad 1]$, $b_i = [\frac{1}{2} \quad \frac{1}{2}]$
 	\begin{align*}
-		\int_{0}^{2}\frac{1}{1+x}\text{dx} &\approx \sum_{\text{i}=1}^{s} b_i \frac{1}{1+c_i}\\
+		\int\limits_{0}^{2}\frac{1}{1+x}\text{dx} &\approx \sum\limits_{\text{i}=1}^{s} b_i \frac{1}{1+c_i}\\
 		 & \approx b_1 \frac{1}{1+c_1}+ b_2 \frac{1}{1+c_2} \\
 		 & \approx \frac{1}{2} \left( \frac{1}{1+0}+ \frac{1}{1+1} \right) \\
 		 & \approx \frac{3}{4}.
@@ -45,7 +45,7 @@
 	
 	Aus der allgemeinen Formel für die Approximation
 	\begin{align*}\tag{4.85, S. 99}
-		A(h):=Q(f,[\alpha,\alpha+h])=h\sum_{\text{i}=1}^{s}b_if(\alpha+c_ih)\approx\int_{\alpha}^{\alpha+h}f(x)\text{dx}
+		A(h):=Q(f,[\alpha,\alpha+h])=h\sum\limits_{\text{i}=1}^{s}b_if(\alpha+c_ih)\approx\int\limits_{\alpha}^{\alpha+h}f(x)\text{dx}
 	\end{align*}
 	folgt wiederum mit der Trapetzregel
 	\begin{align*}
@@ -58,12 +58,12 @@
 	Die im Allgemeinen bessere Approximation A(h/2) mit Schrittweite h/2 lautet
 	\begin{align*}
 		A(h/2):&=Q(f,[\alpha,\alpha+h/2])+Q(f,[\alpha+h/2,\alpha+h]) \tag{4.86} \\
-		&=\frac{h}{2}\sum_{\text{i}=1}^{s}b_if\Bigl(\alpha+c_i\frac{h}{2}\Bigr) + \frac{h}{2}\sum_{\text{i}=1}^{s}b_if\Bigl(\alpha+\frac{h}{2}+c_i\frac{h}{2}\Bigr) \\
+		&=\frac{h}{2}\sum\limits_{\text{i}=1}^{s}b_if\Bigl(\alpha+c_i\frac{h}{2}\Bigr) + \frac{h}{2}\sum\limits_{\text{i}=1}^{s}b_if\Bigl(\alpha+\frac{h}{2}+c_i\frac{h}{2}\Bigr) \\
 		&= \frac{h}{2}\,\Biggl(
-				\sum_{\text{i}=1}^{s}b_ig\Bigl(\alpha+c_i\frac{h}{2}\Bigr) + \sum_{\text{i}=1}^{s}b_ig\Bigl(\alpha+\frac{h}{2}+c_i\frac{h}{2}\Bigr)
+				\sum\limits_{\text{i}=1}^{s}b_ig\Bigl(\alpha+c_i\frac{h}{2}\Bigr) + \sum\limits_{\text{i}=1}^{s}b_ig\Bigl(\alpha+\frac{h}{2}+c_i\frac{h}{2}\Bigr)
 		   \Biggr) \\
 		&= \frac{h}{2}\,\left(
-			\sum_{\text{i}=1}^{s}b_ig\Bigl(0+c_i\frac{h}{2}\Bigr) +  \sum_{\text{i}=1}^{s}b_ig\Bigl(0+\frac{h}{2}+c_i\frac{h}{2}\Bigr)
+			\sum\limits_{\text{i}=1}^{s}b_ig\Bigl(0+c_i\frac{h}{2}\Bigr) +  \sum\limits_{\text{i}=1}^{s}b_ig\Bigl(0+\frac{h}{2}+c_i\frac{h}{2}\Bigr)
 		   \right) \\
 		&= \frac{h}{2}\,\left(
 			\left[b_1g\Bigl(c_1\frac{h}{2}\Bigr) + b_2g\Bigl(c_2\frac{h}{2}\Bigr) \right]+  	\left[b_1g\Bigl(\frac{h}{2}(1+c_1)\Bigr) +b_2g\Bigl(\frac{h}{2}(1+c_2)\Bigr) \right]
@@ -79,14 +79,14 @@
 	\end{align*}
 	Damit lässt sich die Schätzung est für den Fehler von A(h/2) ermitteln, wobei Ordnung $p=2$ aus Bsp. 4.4, S. 85 bekannt ist.
 	\begin{align*}
-		\int_{\alpha}^{\alpha+h}f(x)\text{dx}-A(h/2)\approx \frac{A(h/2)-A(h)}{2^p-1}&=:\text{est} \tag{4.92, S. 100} \\
+		\int\limits_{\alpha}^{\alpha+h}f(x)\text{dx}-A(h/2)\approx \frac{A(h/2)-A(h)}{2^p-1}&=:\text{est} \tag{4.92, S. 100} \\
 		\text{est}&=\frac{\frac{7}{6}-\frac{4}{3}}{2^2-1} \\
 		&=\frac{-\frac{1}{3}}{3} \\
 		&=-\frac{1}{9} = 1.\dot{1}
 	\end{align*}
 	Mit der Richardson-Extrapolation erhält man einen verbesserten Wert, auch extrapolierten Wert, für das bestimmte Integral
 	\begin{align*}
-		\int_{\alpha}^{\alpha+h}f(x)\,\text{dx}\approx A(h/2)+\text{est}&=:Q_{\text{extr.}}(f) \\
+		\int\limits_{\alpha}^{\alpha+h}f(x)\,\text{dx}\approx A(h/2)+\text{est}&=:Q_{\text{extr.}}(f) \\
 		Q_{\text{extr.}}(f)&=\frac{7}{6}+\left(-\frac{1}{9} \right) \\
 		&=\frac{21-2}{18} \\
 		&=\frac{19}{18}=1.0\dot{5} \\

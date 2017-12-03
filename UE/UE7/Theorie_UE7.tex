@@ -25,12 +25,12 @@
 	\section*{7. Numerik Übungen 2017/18}
 	\paragraph{T12}\mbox{}\\
 	\textbf{%
-		a) Stellen Sie die Bedingungsgleichung für die Simpsonregel auf und bestimmen Sie damit aus den Knoten $\pmb{c_1=0}$, $\pmb{c_2=\frac{1}{2}}$, und $\pmb{c_3=1}$ die Gewichte.\\
+		a) Stellen Sie die Bedingungsgleichung für die Simpsonregel auf und bestimmen Sie damit aus den Knoten $\mathbf{c_1=0}$, $\mathbf{c_2=\frac{1}{2}}$, und $\mathbf{c_3=1}$ die Gewichte.\\
         Welche Ordnung besitzt die Simpsonregel? Untersuchen Sie dazu, ob eventuell noch weitere Bedingungsgleichungen erfüllt sind.
 	}\\
     Bedingungsgleichung allgemein (S. 84)
 	\begin{align}\tag{4.31}
-		\sum_{i=1}^{s}b_ic_i^k = \frac{1}{k+1}, k=0, \dots, p-1
+		\sum\limits_{i=1}^{s}b_ic_i^k = \frac{1}{k+1}, k=0, \dots, p-1
 	\end{align}
 	Die Simpsonregel hat 3 Knoten $c_i$, und somit mindestens Ordnung $p = 3$.
 	\begin{alignat*}{5}
@@ -95,7 +95,7 @@
     
     \pagebreak
     \textbf{%
-        b) Gegeben seien die Knoten $\pmb{c_1=\frac{1}{6}}$, $\pmb{c_2=\frac{1}{2}}$, und $\pmb{c_3=\frac{5}{6}}$. Stellen Sie die ersten $\pmb{s}$ Bedingungsgleichungen auf und setzten Sie die Knoten $\pmb{c_1, c_2, c_3}$ ein. Berechnen Sie daraus die Gewichte. Wie groß ist die Ordnung dieser Quadraturformel?
+        b) Gegeben seien die Knoten $\mathbf{c_1=\frac{1}{6}}$, $\mathbf{c_2=\frac{1}{2}}$, und $\mathbf{c_3=\frac{5}{6}}$. Stellen Sie die ersten $\mathbf{s}$ Bedingungsgleichungen auf und setzten Sie die Knoten $\mathbf{c_1, c_2, c_3}$ ein. Berechnen Sie daraus die Gewichte. Wie groß ist die Ordnung dieser Quadraturformel?
     }\\
 		Analog zu a), aber diesmal direkt mit der Matrixschreibweise aus (4.34).
 		\begin{align*}
@@ -178,27 +178,27 @@
 		\newpage
 		
     \textbf{%
-        c) Bestimmen Sie alternativ die Gewichte $\pmb{b_1, b_2, b_3}$ durch Integration der zu den Knoten $\pmb{c_1, c_2, c_3}$ gehörigen Lagrange-Polynome $\pmb{l_1, l_2, l_3}$.
+        c) Bestimmen Sie alternativ die Gewichte $\mathbf{b_1, b_2, b_3}$ durch Integration der zu den Knoten $\mathbf{c_1, c_2, c_3}$ gehörigen Lagrange-Polynome $\mathbf{l_1, l_2, l_3}$.
     }\\
 		\begin{align*}\tag{4.26}
-			b_i=\int_{0}^{1}l_i(t)dt, \quad l_i(t)=\prod_{j=1, j\neq i}^{s}\frac{t-c_j}{c_i-c_j} \\
+			b_i=\int\limits_{0}^{1}l_i(t)dt, \quad l_i(t)=\prod_{j=1, j\neq i}^{s}\frac{t-c_j}{c_i-c_j} \\
 			l_1(t) = \bcancel{\cancel{\frac{t-c_1}{c_1-c_1}}} \cdot \frac{t-c_2}{c_1-c_2} \cdot \frac{t-c_3}{c_1-c_3} \\
 			l_2(t) = \frac{t-c_1}{c_2-c_1} \cdot \bcancel{\cancel{\frac{t-c_2}{c_2-c_2}}} \cdot  \frac{t-c_3}{c_2-c_3} \\
 			l_3(t) = \frac{t-c_1}{c_3-c_2} \cdot \frac{t-c_2}{c_3-c_2} \cdot  \bcancel{\cancel{\frac{t-c_3}{c_3-c_3}}}
 		\end{align*}
 		\begin{align*}
-			b_1 &= \int_{0}^{1} \frac{t-c_2}{c_1-c_2} \cdot \frac{t-c_3}{c_1-c_3} dt = 
-				\int_{0}^{1} \frac{t-\frac{1}{2}}{\frac{1}{6}-\frac{1}{2}} \cdot \frac{t-\frac{5}{6}}{\frac{1}{6}-\frac{5}{6}} dt =
-				\int_{0}^{1} \frac{9}{2}\left(t^2-\frac{4}{3}t+\frac{5}{12} \right) dt \\
+			b_1 &= \int\limits_{0}^{1} \frac{t-c_2}{c_1-c_2} \cdot \frac{t-c_3}{c_1-c_3} dt = 
+				\int\limits_{0}^{1} \frac{t-\frac{1}{2}}{\frac{1}{6}-\frac{1}{2}} \cdot \frac{t-\frac{5}{6}}{\frac{1}{6}-\frac{5}{6}} dt =
+				\int\limits_{0}^{1} \frac{9}{2}\left(t^2-\frac{4}{3}t+\frac{5}{12} \right) dt \\
 				&= \frac{9}{2}\left(\frac{1}{3}t^3-\frac{2}{3}t^2+\frac{5}{12}t \right)\biggr\rvert^1_{0} = \frac{9}{2}\left(\frac{1}{3}-\frac{2}{3}+\frac{5}{12} \right) = \frac{9}{2}\cdot \frac{-4+5}{12} = \frac{3}{2}\cdot \frac{1}{4} =\underline{\frac{3}{8}} \\
-			b_2 &= \int_{0}^{1} \frac{t-c_1}{c_2-c_1} \cdot \frac{t-c_3}{c_2-c_3} dt = 
-				\int_{0}^{1} \frac{t-\frac{1}{6}}{\frac{1}{2}-\frac{1}{6}} \cdot  \frac{t-\frac{5}{6}}{\frac{1}{2}-\frac{5}{6}} = \underline{\frac{1}{4}}\\
-			b_3 &= \int_{0}^{1} \frac{t-c_1}{c_3-c_2} \cdot \frac{t-c_2}{c_3-c_2} dt =
-				\int_{0}^{1}	\frac{t-\frac{1}{6}}{\frac{5}{6}-\frac{1}{2}} \cdot \frac{t-\frac{1}{2}}{\frac{5}{6}-\frac{1}{2}} = \underline{\frac{3}{4}}
+			b_2 &= \int\limits_{0}^{1} \frac{t-c_1}{c_2-c_1} \cdot \frac{t-c_3}{c_2-c_3} dt = 
+				\int\limits_{0}^{1} \frac{t-\frac{1}{6}}{\frac{1}{2}-\frac{1}{6}} \cdot  \frac{t-\frac{5}{6}}{\frac{1}{2}-\frac{5}{6}} = \underline{\frac{1}{4}}\\
+			b_3 &= \int\limits_{0}^{1} \frac{t-c_1}{c_3-c_2} \cdot \frac{t-c_2}{c_3-c_2} dt =
+				\int\limits_{0}^{1}	\frac{t-\frac{1}{6}}{\frac{5}{6}-\frac{1}{2}} \cdot \frac{t-\frac{1}{2}}{\frac{5}{6}-\frac{1}{2}} = \underline{\frac{3}{4}}
 		\end{align*}
 		
     \textbf{%
-        d) Welche Ordnung hat eine Quadraturformel mit Knoten wie in (T12b) und Gewichten $\pmb{b_1=\frac{1}{3}, b_2=\frac{1}{3}, b_3=\frac{1}{3}}$?
+        d) Welche Ordnung hat eine Quadraturformel mit Knoten wie in (T12b) und Gewichten $\mathbf{b_1=\frac{1}{3}, b_2=\frac{1}{3}, b_3=\frac{1}{3}}$?
     }\\
 	\begin{align*}
 		c = \begingroup % keep the change local
@@ -233,16 +233,16 @@
     \textbf{%
         Berechnen Sie das Integral
         \begin{align*}
-            \pmb{\int_{-1}^{2}\frac{1}{2+x}dx}.
+            \mathbf{\int\limits_{-1}^{2}\frac{1}{2+x}dx}.
         \end{align*}
         a) Exakt.}\\
         Substitution mit $\xi=2+x$ und $du=d\xi$.
         \begin{align*}
-            \int_{u}^{o}\frac{1}{\xi}d\xi = \text{log}(\xi)\arrowvert^o_u = \text{log}(x+2)\arrowvert^2_{-1} = \text{log}(4)-\text{log}(1) = \text{log}\left(\frac{4}{1}\right)=\text{log}(4)\approx1.3863
+            \int\limits_{u}^{o}\frac{1}{\xi}d\xi = \text{log}(\xi)\arrowvert^o_u = \text{log}(x+2)\arrowvert^2_{-1} = \text{log}(4)-\text{log}(1) = \text{log}\left(\frac{4}{1}\right)=\text{log}(4)\approx1.3863
         \end{align*}
         
         \textbf{%
-        b) Mit der Quadraturformel aus Aufgabe (T12b) und Schrittweite $\pmb{h=3}$.
+        b) Mit der Quadraturformel aus Aufgabe (T12b) und Schrittweite $\mathbf{h=3}$.
         }\\
 	    Auszug Definition 4.2 (S. 80):
 	    \begin{mdframed}[linewidth=0pt,backgroundcolor=gray!20]
@@ -252,7 +252,7 @@
 	    \end{align}
 	    haben wir folgende Näherungsformel:
 		\begin{align}\tag{4.23}
-			\int_{a}^{b}f(x)dx \approx h\sum_{k=1}^{n}\sum_{i=1}^{s}b_if(x_{k-1}+c_ih)
+			\int\limits_{a}^{b}f(x)dx \approx h\sum\limits_{k=1}^{n}\sum\limits_{i=1}^{s}b_if(x_{k-1}+c_ih)
 		\end{align}
 	\end{mdframed}
 	    \begin{align*}
@@ -266,8 +266,8 @@
 		    	\frac{2}{5}  \\
 		    	\frac{3}{10}
 		    \end{bmatrix} \\
-		\int_{-1}^{2}\frac{1}{2+x}dx &\approx 3\sum_{k=1}^{1}\sum_{i=1}^{3}b_if(x_{1-1}+c_i\cdot3) \\
-	    &\approx 3\sum_{i=1}^{3}b_if(x_{0}+3c_i) \\
+		\int\limits_{-1}^{2}\frac{1}{2+x}dx &\approx 3\sum\limits_{k=1}^{1}\sum\limits_{i=1}^{3}b_if(x_{1-1}+c_i\cdot3) \\
+	    &\approx 3\sum\limits_{i=1}^{3}b_if(x_{0}+3c_i) \\
 	    &\approx 3\left[b_1f(x_{0}+3c_1)+b_2f(x_{0}+3c_2)+b_3f(x_{0}+3c_3) \right] \\
 	    &\approx 3\left[b_1f(-1+3\frac{1}{6})+b_2f(-1+3\frac{1}{2})+b_3f(-1+3\frac{5}{6})\right]  \\
 	    &\approx 3\left[\frac{3}{10}f(-\frac{1}{2})+\frac{2}{5}f(\frac{1}{2})+\frac{3}{10}f(\frac{3}{2})\right]  \\
@@ -278,7 +278,7 @@
 	    \newpage
         \textbf{%
         T13
-        c) Mit der Quadraturformel aus Aufgabe (T12b) und Schrittweite $\pmb{h=\frac{3}{2}}$. \\
+        c) Mit der Quadraturformel aus Aufgabe (T12b) und Schrittweite $\mathbf{h=\frac{3}{2}}$. \\
         Machen Sie eine Skizze mit den Knoten und Gewichten.
 		}\\
         \begin{align*}
@@ -294,7 +294,7 @@
         \frac{2}{5}  \\
         \frac{3}{10}
         \end{bmatrix} \\
-        \int_{-1}^{2}\frac{1}{2+x}dx &\approx \frac{3}{2}\sum_{k=1}^{2}\sum_{i=1}^{3}b_if(x_{k-1}+c_i\cdot\frac{3}{2}) \\
+        \int\limits_{-1}^{2}\frac{1}{2+x}dx &\approx \frac{3}{2}\sum\limits_{k=1}^{2}\sum\limits_{i=1}^{3}b_if(x_{k-1}+c_i\cdot\frac{3}{2}) \\
         &\approx \frac{3}{2}\left[\left(  b_1f(x_0+\frac{3}{2}c_1)+b_2f(x_0+\frac{3}{2}c_2)+b_3f(x_0+\frac{3}{2}c_3)\right)+\left(
         b_1f(x_1+\frac{3}{2}c_1)+b_2f(x_1+\frac{3}{2}c_2)+b_3f(x_1+\frac{3}{2}c_3) \right)  \right] \\
         &\approx \frac{3}{2}\left[\left(  \frac{3}{10}f(-1+\frac{3}{2}\frac{1}{6})+\frac{2}{5}f(-1+\frac{3}{2}\frac{1}{2})+\frac{3}{10}f(-1+\frac{3}{2}\frac{5}{6})\right)+\left(
