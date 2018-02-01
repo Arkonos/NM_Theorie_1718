@@ -1,3 +1,4 @@
+% !TeX spellcheck = de_AT_frami
 \section{Zahldarstellung, Rundung und Fehler}
 	\begin{enumerate}
 		\item \textbf{Wie werden ganze Zahlen binär abgespeichert?}\\
@@ -42,17 +43,32 @@
 				\begin{tabular}[htpb]{rll}
 					s \; \dots \!\!\! & Vorzeichenbit &$\in \{0,1\}$\\
 					m \; \dots \!\!\! & Mantisse & Normiert, $m_0\overset{!}{=}1$ wird weggelassen\\
-					e \; \dots \!\!\! & Exponent & nach Abzug von b$\dots$Bias 
+					e \; \dots \!\!\! & Exponent & nach Abzug von b$\dots$Bias = 1023 (double)
+				\end{tabular} \\ \vspace{0.3cm}
+				\begin{tabular}[htpb]{rccc}
+					 & s & m & l \\
+					  single 32 Bit & 1 & 23 & 8 \\
+					  double 64 Bit & 1 & 52 & 11
 				\end{tabular}
 			\end{table}
-		
 		\item \textbf{Wie werden Gleitpunktzahlen gerundet?} \\
 		S. 6 \\
 		Round to the nearest even.
+		\begin{table}[htbp]
+			\centering
+			\begin{tabular}[htpb]{ccccccl}
+				\dots & $\text{m}_\text{M}$ & $\text{m}_{\text{M}+1}$ & $\text{m}_{\text{M}+2}$ & $m_{M+3}$ & \dots &  \\
+				      & x                   & 0                       & x                       & x         &       & abrunden  \\
+				      & x                   & 1                       & 1                       & 0         &       & aufrunden \\
+				      & x                   & 1                       & 0                       & 1         &       & aufrunden \\
+				      & 1                   & 1                       & 0                       & 0         &       & aufrunden \\
+				      & 0                   & 1                       & 0                       & 0         &       & abrunden
+			\end{tabular}
+		\end{table}
 		\item \textbf{Wie ist der relative Rundungsfehler definiert?} \\
 		S. 6
 		\begin{align*}
-			\frac{|rd(x)-x|}{|x|}\leq \frac{2^{-M-1}\cdot2^e}{a\cdot 2^e}\underset{a\in[1,2)}{\leq}2^{-M-1}=:\texttt{eps}
+			\frac{|\text{rd}(x)-x|}{|x|}\leq \frac{2^{-\text{M}-1}\cdot2^e}{\text{a}\cdot 2^e}\underset{\text{a}\in[1,2)}{\leq}2^{-\text{M}-1}=:\texttt{eps}
 		\end{align*}
 		
 		\item \textbf{Wie groß ist die relative Maschinengenauigkeit \texttt{eps} für doppelt genaue Gleitpunktzahlen?\\
@@ -60,17 +76,29 @@
 				
 				
 		\item \textbf{Was ist die relative/absolute Kondition eines Problems?} \\
-		
-		
+			\begin{align*}
+				\frac{|f(\tilde{x})-f(x)|}{|f(x)|} &\leq \kappa_{\text{rel.}}\cdot\varepsilon, \quad \kappa_{\text{rel.}} > 0 \\
+				|f(\tilde{x})-f(x)| &\leq \kappa_{\text{abs.}}\cdot\delta, \quad \kappa_{\text{abs.}} > 0
+			\end{align*}
+		Wenn $\kappa_{\text{rel.}}$ klein ist werden Inputfehler nicht übermäßig verstärkt und $f$ gilt als gut konditioniert.
 		\item \textbf{Was bedeuten die Begriffe Konsistenz und Konsistenzordnung?} \\
-		
+			Def 1.3 Konsistenz, Konsistenzordnung \\
+			Ein numerisches Verfahren $f_h$ mit Diskretisierungsweite h zur bestimmung einer Näherung von $f_h(x)$ an $f(x)$ ist konsistent, falls gilt
+			\begin{align*}
+				||f_h(x)-f(x)||\leq \text{C}\,h^\text{p}
+			\end{align*}
+			wobei die Konstante $\text{C}>0$ nicht von h abhängen darf und $p\ge1$. Der Exponent $p$ ist dann die Konsistenzordnung und es gilt $f_h\rightarrow f$ für $ h \rightarrow 0$, falls $f_h$ exakt ausgewertet wird. 
 		
 		\item \textbf{Wodurch unterscheidet sich Konsistenz von Konvergenz?} \\
-		
+			$f_h\rightarrow f$ konvergiert für $ h \rightarrow 0$ falls $f_h$ exakt ausgewertet wird. Computer müssen jedoch runden, wodurch wir nur noch von Konsistenz reden können wenn das Verfahren nicht stabil ist.
 		
 		\item \textbf{Was bedeutet der Begriff Stabilität?} \\
 		S. 15\\
-		Ein numerisches Verfahren $f$ heißt stabil, falls bei der numerischen Auswertung $f''(x)$ des Verfahrens Fehler wie Rundungsfehler, Abbruchfehler und Verfahrensfehler von Teilschritten nicht	übermäßig verstärkt werden im Vergleich zu dem durch die relative Kondition $\kappa_{rel}$ des Problems
-		verursachten Fehler.
+		Ein numerisches Verfahren $f$ heißt stabil, falls bei der numerischen Auswertung $\tilde{f}(x)$ des Verfahrens Fehler wie Rundungsfehler, Abbruchfehler und Verfahrensfehler von Teilschritten nicht	übermäßig verstärkt werden im Vergleich zu dem durch die relative Kondition $\kappa_{rel}$ des Problems verursachten Fehler. \\
+		Für die Differenz zwischen numerischer Auswertung $\tilde{f}(x)$ mit obigen Fehlern und exakter Auswertung $f(x)$ gilt dann
+		\begin{align*}
+			||\tilde{f}(x)-f(x)||\leq \text{C}\cdot\kappa_{rel.}\cdot||f(x)||\cdot\texttt{eps}, \quad \text{C} > 0 \text{ klein.}
+		\end{align*}
+		Ein numerisches Verfahren ist insbesondere dann stabil, wenn alle seine Teilschritte gut konditioniert sind.
 		
 	\end{enumerate}
