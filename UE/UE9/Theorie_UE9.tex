@@ -2,7 +2,7 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8x]{inputenc}
 \usepackage{ucs}
-\usepackage{amsmath}
+\usepackage{amsmath,amsfonts,amssymb} % For math equations, theorems, sy
 \usepackage{setspace}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -22,9 +22,9 @@
 \usepackage{listings}
 
 \usepackage{array}
-\usepackage{mathtools} %for minus signes in matrices
+\usepackage{mathtools} %for minus signs in matrices
 
-\usepackage{amsmath,amsfonts,amssymb} % For math equations, theorems, sy
+
 \makeatletter
 \def\zz\ignorespaces{\@ifnextchar-{}{\phantom{-}}}
 \newcolumntype{R}{>{\zz}{r}}
@@ -35,6 +35,7 @@
 
 \begin{document}
 	\pagenumbering{gobble}
+
 	\section*{9. Numerik Übungen 2017/18}
 	\paragraph{T15}\mbox{}\\
 	\textbf{%
@@ -139,7 +140,24 @@
 	Die Knoten $\mathbf{(0,0), (1,0), (0,1)}$ und die Gewichte $\mathbf{\frac{1}{6},\frac{1}{6},\frac{1}{6}}$ definieren eine Quadraturformel auf dem Einheitsdreieck $\mathbf{D=\left\lbrace (\xi,\eta) \in \mathbb{R}^2 \,;\, 0\leq\xi\leq 1,\, 0\leq\eta \leq1-\xi \right\rbrace}$.\\
 	Wie groß ist die Ordnung dieser Quadraturformel? \\
 	Wie lauten die baryzentrischen Koordinaten der Knoten?
-	}
+	} \\
+	Nach 4.109 (S. 104) gilt
+	\begin{align*}
+		\sum_{i=1}^{s}b_ig(c_i,\,d_i)\approx\int\limits_{0}^{1}\int\limits_{0}^{1-\xi}g(\xi,\,\eta)\,\text{d}\eta\,\text{d}\xi.
+	\end{align*}
+	\begin{align*}
+		\qquad s=3, \qquad \begin{pmatrix}c \\ d\end{pmatrix} 
+		= \begin{pmatrix}0 \\ 0\end{pmatrix},\, 
+		\begin{pmatrix}1 \\ 0\end{pmatrix}
+		,\, \begin{pmatrix}0 \\ 1\end{pmatrix} , \qquad b=\left[ \frac{1}{6}\quad \frac{1}{6}\quad \frac{1}{6}\right] 
+	\end{align*}
+	Prüfen der Monome mit steigendem Grad \\
+	\textbf{Grad 0:} 1
+	\begin{align*}
+		\int\limits_{0}^{1}\int\limits_{0}^{1-\xi}1\,\text{d}\eta\,\text{d}\xi =
+		\int\limits_{0}^{1}1-\xi\,\text{d}\xi
+	\end{align*}
+	
 	\newpage
 	\paragraph{T17}\mbox{}\\
 	\textbf{%
