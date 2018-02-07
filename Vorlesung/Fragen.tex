@@ -17,6 +17,20 @@
 \usepackage{multirow}
 \usepackage{cellspace}
 
+\usepackage{scalerel,stackengine}
+\stackMath
+\newcommand\reallywidehat[1]{%
+	\savestack{\tmpbox}{\stretchto{%
+			\scaleto{%
+				\scalerel*[\widthof{\ensuremath{#1}}]{\kern-.6pt\bigwedge\kern-.6pt}%
+				{\rule[-\textheight/2]{1ex}{\textheight}}%WIDTH-LIMITED BIG WEDGE
+			}{\textheight}% 
+		}{0.5ex}}%
+	\stackon[1pt]{#1}{\tmpbox}%
+}
+\parskip 1ex
+
+
 \setlength\parindent{0pt}
 \renewcommand*{\theenumi}{\thesection.\arabic{enumi}}
 \renewcommand*{\theenumii}{\theenumi.\arabic{enumii}}

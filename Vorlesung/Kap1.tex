@@ -6,7 +6,7 @@
 			\begin{align*}
 				b_{N-1}b_{N-2}\dots b_{1}b_{0} \cong b = \sum_{j=0}^{N-1}b_j2^j, \quad b_j\in\{0,1\}
 			\end{align*}
-			Beispiel: $23_{10}$
+			Beispiel: \(23_{10}\)
 			\begin{align*}
 					10101_2 &= 1\cdot2^4+0\cdot2^3+0\cdot2^2+1\cdot2^1+1\cdot2^0 \\
 					      &= 16+0+0+2+1 = 19_{10}
@@ -23,11 +23,13 @@
 				\end{minipage}\hspace{-0.5cm}
 				\begin{minipage}{0.01\textwidth}
 					\centering
-					$\rightarrow$
+					\vspace{0.3cm}
+					\(\rightarrow\)
 				\end{minipage}\hspace{-0.7cm}
 				\begin{minipage}{0.2\textwidth}
 					\centering
-					$10011_2$
+					\vspace{0.3cm}
+					\(10011_2\)
 				\end{minipage}
 			\end{figure}
 			
@@ -41,9 +43,9 @@
 			\begin{table}[htbp]
 				\centering
 				\begin{tabular}[htpb]{rll}
-					s \; \dots \!\!\! & Vorzeichenbit &$\in \{0,1\}$\\
-					m \; \dots \!\!\! & Mantisse & Normiert, $m_0\overset{!}{=}1$ wird weggelassen\\
-					e \; \dots \!\!\! & Exponent & nach Abzug von b$\dots$Bias = 1023 (double)
+					s \; \dots \!\!\! & Vorzeichenbit &\(\in \{0,1\}\)\\
+					m \; \dots \!\!\! & Mantisse & Normiert, \(m_0\overset{!}{=}1\) wird weggelassen\\
+					e \; \dots \!\!\! & Exponent & nach Abzug von b\(\dots\)Bias = 1023 (double)
 				\end{tabular} \\ \vspace{0.3cm}
 				\begin{tabular}[htpb]{rccc}
 					 & s & m & l \\
@@ -57,7 +59,7 @@
 		\begin{table}[htbp]
 			\centering
 			\begin{tabular}[htpb]{ccccccl}
-				\dots & $\text{m}_\text{M}$ & $\text{m}_{\text{M}+1}$ & $\text{m}_{\text{M}+2}$ & $m_{M+3}$ & \dots &  \\
+				\dots & \(\text{m}_\text{M}\) & \(\text{m}_{\text{M}+1}\) & \(\text{m}_{\text{M}+2}\) & \(m_{M+3}\) & \dots &  \\
 				      & x                   & 0                       & x                       & x         &       & abrunden  \\
 				      & x                   & 1                       & 1                       & 0         &       & aufrunden \\
 				      & x                   & 1                       & 0                       & 1         &       & aufrunden \\
@@ -76,27 +78,27 @@
 					Wie kann man \texttt{eps} experimentell bestimmen?} \\
 				
 				
-		\item \textbf{Was ist die relative/absolute Kondition eines Problems?} \\
+		\item \textbf{Was ist die relative/absolute Kondition eines Problems?}
 			\begin{align*}
 				\frac{|f(\tilde{x})-f(x)|}{|f(x)|} &\leq \kappa_{\text{rel.}}\cdot\varepsilon, \quad \kappa_{\text{rel.}} > 0 \\
 				|f(\tilde{x})-f(x)| &\leq \kappa_{\text{abs.}}\cdot\delta, \quad \kappa_{\text{abs.}} > 0
 			\end{align*}
-		Wenn $\kappa_{\text{rel.}}$ klein ist werden Inputfehler nicht übermäßig verstärkt und $f$ gilt als gut konditioniert.
+		Wenn \(\kappa_{\text{rel.}}\) klein ist werden Inputfehler nicht übermäßig verstärkt und \(f\) gilt als gut konditioniert.
 		\item \textbf{Was bedeuten die Begriffe Konsistenz und Konsistenzordnung?} \\
 			Def 1.3 Konsistenz, Konsistenzordnung \\
-			Ein numerisches Verfahren $f_h$ mit Diskretisierungsweite h zur Bestimmung einer Näherung von $f_h(x)$ an $f(x)$ ist konsistent, falls gilt
+			Ein numerisches Verfahren \(f_h\) mit Diskretisierungsweite h zur Bestimmung einer Näherung von \(f_h(x)\) an \(f(x)\) ist konsistent, falls gilt
 			\begin{align*}
 				||f_h(x)-f(x)||\leq \text{C}\,h^\text{p}
 			\end{align*}
-			wobei die Konstante $\text{C}>0$ nicht von h abhängen darf und $p\ge1$. Der Exponent $p$ ist dann die Konsistenzordnung und es gilt $f_h\rightarrow f$ für $ h \rightarrow 0$, falls $f_h$ exakt ausgewertet wird. 
+			wobei die Konstante \(\text{C}>0\) nicht von h abhängen darf und \(p\ge1\). Der Exponent \(p\) ist dann die Konsistenzordnung und es gilt \(f_h\rightarrow f\) für \( h \rightarrow 0\), falls \(f_h\) exakt ausgewertet wird. 
 		
 		\item \textbf{Wodurch unterscheidet sich Konsistenz von Konvergenz?} \\
-			$f_h\rightarrow f$ konvergiert für $ h \rightarrow 0$ falls $f_h$ exakt ausgewertet wird. Computer müssen jedoch runden, wodurch wir nur noch von Konsistenz reden können wenn das Verfahren nicht stabil ist.
+			\(f_h\rightarrow f\) konvergiert für \( h \rightarrow 0\) falls \(f_h\) exakt ausgewertet wird. Computer müssen jedoch runden, wodurch wir nur noch von Konsistenz reden können wenn das Verfahren nicht stabil ist.
 		
 		\item \textbf{Was bedeutet der Begriff Stabilität?} \\
 		S. 15\\
-		Ein numerisches Verfahren $f$ heißt stabil, falls bei der numerischen Auswertung $\tilde{f}(x)$ des Verfahrens Fehler wie Rundungsfehler, Abbruchfehler und Verfahrensfehler von Teilschritten nicht	übermäßig verstärkt werden im Vergleich zu dem durch die relative Kondition $\kappa_{rel}$ des Problems verursachten Fehler. \\
-		Für die Differenz zwischen numerischer Auswertung $\tilde{f}(x)$ mit obigen Fehlern und exakter Auswertung $f(x)$ gilt dann
+		Ein numerisches Verfahren \(f\) heißt stabil, falls bei der numerischen Auswertung \(\tilde{f}(x)\) des Verfahrens Fehler wie Rundungsfehler, Abbruchfehler und Verfahrensfehler von Teilschritten nicht	übermäßig verstärkt werden im Vergleich zu dem durch die relative Kondition \(\kappa_{rel}\) des Problems verursachten Fehler. \\
+		Für die Differenz zwischen numerischer Auswertung \(\tilde{f}(x)\) mit obigen Fehlern und exakter Auswertung \(f(x)\) gilt dann
 		\begin{align*}
 			||\tilde{f}(x)-f(x)||\leq \text{C}\cdot\kappa_{rel.}\cdot||f(x)||\cdot\texttt{eps}, \quad \text{C} > 0 \text{ klein.}
 		\end{align*}
