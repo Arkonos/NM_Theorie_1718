@@ -1,6 +1,7 @@
 % !TeX spellcheck = de_AT_frami
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8x]{inputenc}
+\usepackage[naustrian]{babel}
 \usepackage{ucs}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -16,6 +17,9 @@
 \geometry{margin= 2cm}
 \usepackage{multirow}
 \usepackage{cellspace}
+\usepackage[hidelinks]{hyperref}
+\usepackage[mathscr]{euscript}
+\usepackage{commath}
 
 \usepackage{scalerel,stackengine}
 \stackMath
@@ -31,18 +35,24 @@
 \parskip 1ex
 
 
+
 \setlength\parindent{0pt}
 \renewcommand*{\theenumi}{\thesection.\arabic{enumi}}
 \renewcommand*{\theenumii}{\theenumi.\arabic{enumii}}
 
 \begin{document}
 	\pagenumbering{gobble}
-	\title{VO Numerische Mathematik
+	\title{
+		\mbox{}
+		\vspace{5cm} \\
+		VO Numerische Mathematik
 		\\
 		2017/18
 		\\
-		\flushbottom
-		Theoriefragen }
+		Theoriefragen \\
+		\vspace{\fill}
+		\large\url{https://github.com/Arkonos/NM_Theorie_1718}
+	}
 	\maketitle
 	
 	\newpage

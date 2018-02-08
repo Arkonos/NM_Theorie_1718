@@ -55,17 +55,17 @@
 			\end{align*}
 		\item \textbf{Wie berechnet man die Jacobimatrix einer vektorwertigen Funktion \(\mathbf{f:}{\rm I\!R}\mathbf{^n} \rightarrow {\rm I\!R}\mathbf{^m}\) durch numerisches Differenzieren?}\\
 			Jacobimatrix: \(\mathbf{J(x)}=\mathbf{f'(x)})=\begin{bmatrix}
-				\frac{\partial f_1}{\partial x_1} & \cdots & \frac{\partial f_1}{\partial x_n} \\
+				\pd{f_1}{x_1} & \cdots & \pd{f_1}{x_n} \\
 				\vdots &  & \vdots \\
-				\frac{\partial f_m1}{\partial x_1} & \cdots & \frac{\partial f_m}{\partial x_n}
+				\pd{f_{m}}{x_1} & \cdots & \pd{f_m}{x_n}
 			\end{bmatrix}\) \\\\
 			Approximation der i-ten Spalte
 			\begin{align*}
-				\frac{\partial \mathbf{f}}{\partial x_i}(\mathbf{x})=
+				\pd{\mathbf{f}}{x_i}(\mathbf{x})=
 					\begin{bmatrix}
-						\frac{\partial f_1}{\partial x_i}(\mathbf{x}) \\
+						\pd{f_1}{x_i}(\mathbf{x}) \\
 						\vdots \\
-						\frac{\partial f_m}{\partial x_i}(\mathbf{x})
+						\pd{f_m}{x_i}(\mathbf{x})
 					\end{bmatrix}
 					\approx \frac{\mathbf{f}(x_1,\dots,x_{i-1},x_i+h,x_{i+1},\dots,x_n)-\mathbf{f(x)}}{h}
 			\end{align*}

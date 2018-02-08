@@ -1,14 +1,67 @@
+% !TeX spellcheck = de_AT_frami
 \section{Numerische Integration}
 	\begin{enumerate}
 		\item \textbf{Was bedeutet \textit{Linearität} und \textit{Positivität} des Integrals?} \\
+		Eigenschaften des Integrals und der numerischen Approximation.
+		\begin{itemize}
+			\item Linearität: \quad \(\int_{a}^{b}\left(\alpha f(x)+\beta g(x)\right)\dif{x} = \alpha \int_{a}^{b}f(x)\dif{x}+\beta\int_{a}^{b}g(x)\dif{x}\)
+			\item Positivität: \quad \(f(x)\geq0\) für alle \(x\in[a,b]\Rightarrow\int_{a}^{b}f(x)\dif{x}\geq0.\)
+		\end{itemize}
 		
 		\item \textbf{Erklären Sie den Begriff \textit{Quadraturformel}.} \\
+			Eine Quadraturformel \(Q=(b_i,c_i)^s_{i=1}\) ist eine Näherungsformel
+			\begin{align*}
+				I(g)=\int_{0}^{1}g(t)\dif{t}\approx\sum_{i=1}^{s}b_ig(c_i)=:Q(g)
+			\end{align*}
+			zur numerischen Berechnung eines Integrals auf dem Intervall \([0,1]\). Die Zahlen \(b_1,\dots,b_s\) heißen Gewichte und \(c_1,\dots,c_s\) Knoten der Quadraturformel, \(s\) ist die Anzahl der Stufen.
+			Für die Knoten wird
+			\begin{align*}
+				0\leq c_1<c_2<\cdots<c_s\leq1
+			\end{align*}
+			verlangt und für die Gewichte
+			\begin{align*}
+				b_1+b_2+\dots+b_s=1.
+			\end{align*}
+			Für ein beliebiges Intervall \([a,b]\) werden die Knoten von \([0,1]\) nach \([a,b]\) transformiert und es gilt
+			\begin{align*}
+				I(g)=\int_{a}^{b}g(t)\dif{t}\approx(b-a)\sum_{i=1}^{s}b_i\underbrace{f(a+c_i(b-a))}_{g(c_i)}=:Q(f,[ab]).
+			\end{align*}
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[width=0.4\linewidth]{kap4_1}
+			\end{figure}
 		
-		\item \textbf{Nennen Sie einige einfache Quadraturformeln inklusive Knoten und Gewichte.} \\
+		
+		\item \textbf{Nennen Sie einige einfache Quadraturformeln inklusive Knoten und Gewichte.}
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[width=0.6\linewidth]{kap4_2}
+			\end{figure}
+		
+		\pagebreak
 		
 		\item \textbf{Erklären Sie den Begriff \textit{zusammengesetzte Quadraturformel}.} \\
+			Ist der Abstand \(b-a\) sehr groß oder ändert sich der Integrand im Integrationsbereich \([a,b]\) rasch, zerlegt man \([a,b]\) in \(n\) Teilintervalle \([x_0,x_1],[x_1,x_2],\dots,[x_{n-1},x_n]\) mit \(a=x_0<x_1<x_2<\cdots<x_{n-1}<x_n=b\). Das Integral wird aufgespalten in eine Summe von \(n\) Teilintegralen über die einzelnen Teilintervalle:
+			\begin{align*}
+				\int_{a}^{b}f(x)\dif{x}=\int_{x_0}^{x_1}f(x)\dif{x}+\int_{x_1}^{x_2}f(x)\dif{x}+\cdots+\int_{x_{n-1}}^{x_n}f(x)\dif{x}
+			\end{align*}
+			Jedes dieser Teilintegrale \(\int_{x_{k-1}}^{x_k}f(x)\dif{x}\) wird mit einer Quadraturformel numerisch berechnet.\\
+			Genauer Definiert mit der Definition aus 4.2: \\
+			Es sei eine Quadraturformel \(Q=(b_i,c_i)^s_{i=1}\) und eine Unterteilung des Intervalls \([a,b]\) wie oben gegeben. Dann heißt eine Näherungsformel
+			\begin{align*}
+				\int_{a}^{b}f(x)\dif{x}\approx\sum_{k=1}^{n}Q(f,[x_{k-1}],x_k)=\sum_{k=1}^{n}h_k\sum_{i=1}^{s}b_if(x_{k-1}+c_ih_k)=:S_Q(f,x_0,\dots,x_n)
+			\end{align*}
+			mit \(h_k=x_k-x_{k-1}\) zusammengesetzte Quadraturformel oder Summe von Quadraturformeln. Für eine äquidistante Unterteilung von \([a,b]\) in \(n\) Teilintervalle, also
+			\begin{align*}
+				x_k=a+kh, \quad h=\frac{b-a}{n}, \quad k=0,\dots,n,
+			\end{align*}
+			haben wir folgende Näherungsformel
+			\begin{align*}
+				\int_{a}^{b}f(x)\dif{x}\approx h\sum_{k=1}^{n}\sum_{i=1}^{s}b_if(x_{k-1}+c_ih)=:S_Q(f,h,[a,b])=S_Q(f,h).
+			\end{align*}
 		
 		\item \textbf{Wie erhält man Quadraturformeln mit Hilfe von Polynominterpolation?} \\
+			
 		
 		\item \textbf{Erklären Sie den Begriff \textit{Ordnung} einer Quadraturformel. Wie bestimmt man die Ordnung?} \\
 		
@@ -28,7 +81,7 @@
 		
 		\item \textbf{Wie funktioniert eine Schrittweitensteuerung? Erklären Sie die Begriffe \textit{Fehlerkriterium} und \textit{Fehlerschätzer}.} \\
 		
-		\item \textbf{Erklären Sie den Begriff \textit{Richardson-Extrapolation}. Wie berechnet man est und $\pmb{Q_extr}$.} \\
+		\item \textbf{Erklären Sie den Begriff \textit{Richardson-Extrapolation}. Wie berechnet man est und $\mathbf{Q_extr}$.} \\
 		
 		\item \textbf{Was passiert bei Integranden mit Singularitäten oder Singularitäten in den Ableitungen?} \\
 		
