@@ -61,13 +61,32 @@
 			\end{align*}
 		
 		\item \textbf{Wie erhält man Quadraturformeln mit Hilfe von Polynominterpolation?} \\
+			Die zu integrierende Funktion \(g\) wird durch ein Polynom \(q\) ersetzt und dieses integriert. Die Stützstellen der Polynominterpolation sind die Knoten der Quadraturformel. Die Gewichte erhält man durch Integrieren der Lagrange-Polynome:
+			\begin{align*}
+				b_i=\int_{0}^{1}\ell_i(t)\dif{t},\quad \ell_i(t)=\prod_{j=1,j\neq i}^{s}\frac{t-c_j}{c_i-c_j}.
+			\end{align*}
+			Für die Knoten \(c_i\) gibt es verschiedene Ansätze, zum Beispiel Abgeschlossene Newton-Cotes-Formeln
+			\begin{align*}
+				c_i=\frac{i-1}{s-1}, \quad i=1,\dots,s.
+			\end{align*}
+			Für bessere Näherungen verwendet man jedoch Tschebyscheff-Knoten was zu den Clenshaw-Curtis-Formeln führt:
+			\begin{align*}
+				c_i=\frac{1}{2}\sin\left(\frac{2i-1}{2s}\right)+\frac{1}{2}
+			\end{align*}
+			
+		\item \textbf{Erklären Sie den Begriff \textit{Ordnung} einer Quadraturformel. Wie bestimmt man die Ordnung?} \\
+			Eine Quadraturformel \(Q=(b_i,c_i)^s_{i=1}\) hat Ordnung \(p\) genau dann, wenn alle Polynome \(q\) vom Grad \(\leq p-1\) exakt integriert werden, also \(I(q)=Q(q)\) gilt. \\
 			
 		
-		\item \textbf{Erklären Sie den Begriff \textit{Ordnung} einer Quadraturformel. Wie bestimmt man die Ordnung?} \\
-		
 		\item \textbf{Was sind \textit{Bedingungsgleichungen}?} \\
+			Alternativ muss die Quadraturformel die Bedingungsgleichung erfüllen:
+				\begin{align*}
+					\sum_{i=1}^{s}b_ic_i^k=\frac{1}{k+1},\quad
+						k=0,\dots,p-1
+				\end{align*}
 		
 		\item \textbf{Erklären Sie die Begriffe \textit{Fehler einer Quadraturformel} und \textit{Fehlerkonstante}.} \\
+		Na, sicher nicht.
 		
 		\item \textbf{Was für Abschätzungen gelten für den Fehler einer Quadraturformel bzw. einer zusammengesetzten Quadraturformel? Was muss der Integrand $f$ dabei erfüllen?} \\
 		
