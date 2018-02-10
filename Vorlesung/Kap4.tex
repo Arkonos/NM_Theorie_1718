@@ -86,25 +86,66 @@
 				\end{align*}
 		
 		\item \textbf{Erklären Sie die Begriffe \textit{Fehler einer Quadraturformel} und \textit{Fehlerkonstante}.} \\
-		Na, sicher nicht.
+		Gegeben sei ein Intervall \([a,b]\) und die Quadraturformel \(Q(f,[a,b])=h\sum_{i=1}^{s}b_if(a+c_ih)\) mit Schrittweite \(h=b-a\). Für stetige Funktionen \(f\in\mathscr{C}([a,b])\) definiert man den Fehler der Quadraturformel als
+		\begin{align*}
+			E(f)=I(f)-Q(f)=\int_{a}^{a+h}f(x)\dif{x}-h\sum_{i=1}^{s}b_if(a+c_ih).
+		\end{align*}
 		
 		\item \textbf{Was für Abschätzungen gelten für den Fehler einer Quadraturformel bzw. einer zusammengesetzten Quadraturformel? Was muss der Integrand $f$ dabei erfüllen?} \\
+			Siehe 4.5 Fehler einer Quadraturformel, Satz 4.3 Fehler einer Quadraturformel und Satz 4.4 Fehler von zusammengesetzten Quadraturformeln.
 		
 		\item \textbf{Was sind \textit{symmetrische Quadraturformeln} und welche Eigenschaft besitzen sie?} \\
+			Eine Quadraturformel \(b_i,c_i)^s_{i=1}\) heißt symmetrisch, wenn für die Knoten und Gewichte folgendes gilt:
+			\begin{align*}
+				c_i=1-c_{c+1-i}, \quad \text{und} \quad b_i=b_{s+1-i}, \quad i=1,\dots,s.
+			\end{align*}
+			Die Knoten und Gewichte sind also an 1/2 gespiegelt. Die Ordnung einer symmetrischen Quadraturformel ist gerade.
 		
 		\item \textbf{Was ist eine Gaußsche Quadraturformel? Welche Ordnung besitzen sie?} \\
-		
+			Eine Quadraturformel \(b_i,c_i)^s_{i=1}\) mit \(s\) Stufen heißt Gaußsche Quadraturformel, wenn die Knoten \(c_1,\dots,c_s\) die auf das Intervall \([0,1]\) transformierte Nullstelle \(x_1,\dots,x_s\) des Legendre Polynoms \(P_s\) vom Grad \(s\) sind, also
+			\begin{align*}
+				c_i=\frac{1}{2}+\frac{x_i}{2}, \quad i=1,\dots,s.
+			\end{align*}
+			Die Gewichte \(b_i\) sind so bestimmt, dass sie die Bedingungsgleichung
+			\begin{align*}
+				\sum_{i=1}^{s}b_ic_i^k=\frac{1}{k+1}, \quad k=0,\dots,s-1
+			\end{align*}
+			erfüllen. \\
+			Die Gaußsche Quadraturformel mit \(s\) Stufen besitzt die Ordnung \(p=2s\).
+			
 		\item \textbf{Wie groß kann die Ordnung einer Quadraturformel maximal sein?} \\
+			\(p=2s\)
 		
 		\item \textbf{Was gilt für die Gewichte einer Gaußschen Quadraturformel?} \\
-		
+			Die Gewichte \(b_i\) sind so bestimmt, dass sie die Bedingungsgleichung
+			\begin{align*}
+				\sum_{i=1}^{s}b_ic_i^k=\frac{1}{k+1}, \quad k=0,\dots,s-1
+			\end{align*}
+			erfüllen.
 		\item \textbf{Wie funktioniert eine Schrittweitensteuerung? Erklären Sie die Begriffe \textit{Fehlerkriterium} und \textit{Fehlerschätzer}.} \\
+			Um Rechenzeit einzusparen will man äquidistanten Intervallen dort verfeinert, wo sich die Funktion \(f\) rasch ändert.
+			Das Fehlerkriterium dient zur Entscheidung, ob ein betrachtetes Integrationsintervall \([\alpha, \beta]\), ein Teilintervall von \([a,b]\), weiter verfeinert werden muss, oder ob das Fehlerkriterium erfüllt ist. Dann wäre der Fehler \(E(f,[\alpha,\beta])\) des Ergebnisses \(Q(f,[\alpha,\beta])\) akzeptabel.
+			Da man das genaue Ergebnis nicht kennt, muss man einen Fehlerschätzer verwenden um einen Wert zu erhalten den man mit der Toleranz TOL vergleichen kann.
 		
-		\item \textbf{Erklären Sie den Begriff \textit{Richardson-Extrapolation}. Wie berechnet man est und $\mathbf{Q_extr}$.} \\
+		
+		\item \textbf{Erklären Sie den Begriff \textit{Richardson-Extrapolation}. Wie berechnet man est und $\mathbf{Q_{extr}}$.} \\
+			
 		
 		\item \textbf{Was passiert bei Integranden mit Singularitäten oder Singularitäten in den Ableitungen?} \\
+			Reduktion der Ordnung von \(Qc^p\) zu \(Qc^q\) mit \(q<p\).
 		
+		\pagebreak
 		\item \textbf{Wie werden Doppelintegrale auf Rechtecken numerisch berechnet?} \\
+			Durch Quadraturformeln für Rechtecke. \\
+			Wir verwenden auf dem Rechteck \(R=[a,b]\times[\hat{a},\hat{b}]\) in \(x\)-Richtung einen Schritt der Quadraturformel \(Q=(b_i,c_i)^s_{i=1}\) und in \(y\)-Richtung einen Schritt der Quadraturformel \(\hat{Q}=(\hat{b}_i,\hat{c}_i)^{\hat{s}}_{i=1}\):
+			\begin{align*}
+				\iint_Rf(x,y)\dif{F}=\int_{a}^{b}\int_{\hat{a}}^{\hat{b}}f(x,y)\dif{y}\dif{x}\approx h\sum_{i=1}^{s}b_i\int_{\hat{a}}^{\hat{b}}f(a+c_ih,y)\dif{y}\approx h\hat{h}\sum_{i=1}^{s}\sum_{j=	1}^{\hat{s}}b_i\hat{b}_jf(a+c_ih,\hat{a}+\hat{c}_j\hat{h})
+			\end{align*}
+			mit \(h=b-a\) und \(\hat{h}=\hat{b}-\hat{a}\). Man hat also eine Quadraturformel mit Gewichten \(b_i,\hat{b}_j\), die \(f\) in den Punkten \((a+c_ih,\hat{a}+\hat{c}_j\hat{h})\) auswertet.
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[width=0.7\linewidth]{kap4_3}
+			\end{figure}
 		
 		\item \textbf{Wie werden Doppelintegrale auf Dreiecken numerisch berechnet? Wie überprüft man die Ordnung einer Quadraturformel für Dreiecke?} \\
 		
