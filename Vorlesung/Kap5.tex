@@ -1,5 +1,5 @@
 % !TeX spellcheck = de_AT_frami
-\section{Numerische Integration}
+\section{Lineare Algebra}
 	\begin{enumerate}
 		\item \textbf{Wie ist die LU-Zerlegung definiert?} \\
 			Es sei A eine invertierbare \(n\times n\)-Matrix. Dann existieren drei ebenfalls invertierbare Matrizen und zwar eine Permutationsmatrix P, eine untere Dreieckmatrix L und eine obere Dreiecksmatrix U, d.h.
@@ -28,12 +28,12 @@
 			Im \(k\).ten Schritt der LU-Zerlegung heißt dies: Suche das betragsgrößte Element in der \(k\)-ten Spalte in den Zeilen \(k,k+1,\dots,n\)!
 		
 		\item \textbf{Wie erhält man die Permutationsmatrix bzw. den Permutationsvektor?} \\
-		Permutationsmatrix P
+			Permutationsmatrix P
 			\begin{itemize}
 				\item Starte mit der Einheitsmatrix
 				\item Führe an dieser Matrix ebenfalls die entsprechend der Pivotsuche beim Gaußschen Algorithmus notwendige Zeilenvertauschung durch.
 			\end{itemize}
-		Permutationsvektor IP mit Länge \(n\)
+			Permutationsvektor IP mit Länge \(n\)
 			\begin{itemize}
 				\item \(\text{IP}[n]=(-1)^{\text{Anzahl Vertauschungen}}\)
 				\item \(\text{IP}[k]=m\) \\
@@ -52,18 +52,19 @@
 				\(\text{Ux=y}\Rightarrow \text{x}\)
 			\end{enumerate}
 		
-		\item \textbf{Wie berechnet man \(\mathbf{\det A}\) mit Hilfe der LU-Zerlegung?} \\
+		\item \textbf{Wie berechnet man \(\mathbf{\det A}\) mit Hilfe der LU-Zerlegung?}
 			\begin{align*}
 				\det{A}=u_{11}\cdot u_{22}\cdots u_{nn}\cdot\text{IP[n]}
 			\end{align*}
 		
 		\item \textbf{Wie groß ist der Rechenaufwand der LU-Zerlegung und für das Auflösen eines linearen Gleichungssystems?}
-		\begin{itemize}
-			\item LU-Zerlegung: \(\frac{n^3}{3}+\mathcal{O}(n^2) \quad\) \text{Operationen}
-			\item Auflösen l.Gls.: \(n^2+\mathcal{O}(n) \quad\) Operationen
-		\end{itemize}
+			\begin{itemize}
+				\item LU-Zerlegung: \(\frac{n^3}{3}+\mathcal{O}(n^2) \quad\) \text{Operationen}
+				\item Auflösen l.Gls.: \(n^2+\mathcal{O}(n) \quad\) Operationen
+			\end{itemize}
 		
 		\pagebreak
+		
 		\item \textbf{Wie ist die Cholesky-Zerlegung einer Matrix A definiert? Welche Eigenschaften muss A besitzen?} \\
 			Cholesky-Zerlegung: A=CC\(^\text{T}\) wobei der Cholesky-Faktor C eine untere Dreiecksmatrix von A ist. \\
 			Eigenschaften die A haben muss:
@@ -114,7 +115,9 @@
 				\item[(iii)] \(||x+y||\leq||x||+||y||\). (Dreiecksungleichung)
 			\end{itemize}
 		
-		\item \textbf{Wie berechnet man \(\mathbf{||\text{A}||_1}\), \(\mathbf{||\text{A}||_2}\) und \(\mathbf{||\text{A}||_\infty}\) ?} \\
+		\pagebreak
+		
+			\item \textbf{Wie berechnet man \(\mathbf{||\text{A}||_1}\), \(\mathbf{||\text{A}||_2}\) und \(\mathbf{||\text{A}||_\infty}\) ?} \\
 			\begin{itemize}
 				\item Es sei A eine \(m\times n\)-Matrix.
 					Die Matrixnorm für die 1-Norm
@@ -129,7 +132,7 @@
 					ist die maximale Zeilenbetragssumme. Merkregel: \(\infty\) liegt wie eine Zeile.
 				\item Die Matrixnorm für die 2-Norm (euklidische Norm):
 					\begin{align*}
-						||\text{A}||_2=\sqrt{\text{größere Eigenwerte von A}^\text{T}\text{A}}
+						||\text{A}||_2=\sqrt{\text{größter Eigenwert von A}^\text{T}\text{A}}
 					\end{align*}
 			\end{itemize}		
 			
@@ -157,23 +160,49 @@
 			\end{enumerate}
 		
 		\item \textbf{Welche Matrizen haben eine große/kleine Kondition?} \\
-		Groß: Hilbertmatrix, Vandermonde-Matrix \\
-		Klein: \(\text{A}=\alpha\text{I}, \quad \kappa(\text{A})=\kappa(\alpha\text{I})=\kappa(\text{I})=1\)\\
-		\mbox{}\hspace{0.88cm} Für eine orthogonale Matrix Q gilt \(\kappa_2(\text{Q})=1\)
+			Groß: Hilbertmatrix, Vandermonde-Matrix \\
+			Klein: \(\text{A}=\alpha\text{I}, \quad \kappa(\text{A})=\kappa(\alpha\text{I})=\kappa(\text{I})=1\)\\
+			\mbox{}\hspace{0.88cm} Für eine orthogonale Matrix Q gilt \(\kappa_2(\text{Q})=1\)
 		
 		\item \textbf{Was ist die Kondition der Einheitsmatrix?}
 			\begin{align*}
 				\kappa(\text{I})=1
 			\end{align*}
 		
+		\pagebreak
+		
 		\item \textbf{Wie lässt sich die Kondition einer Matrix geometrisch interpretieren?} \\
-			Es sei \(\varepsilon=\left\lbrace \text{A}\cdot\text{y}:||\text{y}||_2=1 \right\rbrace \) jene Ellipse, die durch Anwendung der Matrix auf A auf alle Vektoren mit Länge 1 erzeugt wird. Dann gilt:\\
-			\begin{centering}
-				\(\kappa(\text{A}) \) = Umkreisradius
-			\end{centering}
+			Verzerrungsfaktor:
+			Es sei \(\varepsilon=\left\lbrace \text{A}\cdot\text{y}:||\text{y}||_2=1 \right\rbrace \) jene Ellipse, die durch Anwendung der Matrix auf A auf alle Vektoren mit Länge 1 erzeugt wird. Dann gilt:
+			\begin{center}
+				\(\kappa(\text{A}) \) = Umkreisradius/Inkreisradius der Ellipse \(\varepsilon\) = Verhältnis der Hauptachsen von \(\varepsilon\) = Verzerrungsfaktor von A.
+			\end{center}
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[width=0.6\linewidth]{kap5_1}
+			\end{figure}
+		
 		
 		\item \textbf{Wie lässt sich die Kondition eines linearen Gleichungssystems geometrisch interpretieren?} \\
+			Eine Störung von b in einem Ax=b System verschiebt die erste Gerade leicht. Die neue Lösung eines gut Konditionierten Problems liegt wie in der Abbildung zu sehen näher an einer ungestörten Lösung als die eines schlecht Konditionierten.
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[width=0.6\linewidth]{kap5_2}
+			\end{figure}
 		
 		\item \textbf{Wie ist die QR-Zerlegung definiert? Wozu wird sie verwendet?} \\
+			Es sei A eine \(m\times n\)-Matrix mit \(m\geq n\) und \(\text{Rg}\,\text{A} = n\). Dann existiert eine orthogonale \(m \times m\)-Matrix Q mit
+			\begin{align*}
+				\text{A}=\text{QR}\quad \text{und} \text{R}=\begin{bmatrix}
+					r_{11} & \cdots & r_{1n} \\
+					 & \ddots & \vdots \\
+					 0 & & r_{nn} \\
+					 0 & \cdots & 0 \\
+					 \vdots & & \vdots \\
+					 0 & \cdots & 0 
+				\end{bmatrix}.
+			\end{align*}
+			Die \(m \times n\)-Matrix R besteht aus einer oberen \(n\times n\)-Dreiecksmatrix und einem \((m-n)\times n\) Block aus Nullen darunter. Die Diagonalelemente \(r_{ii}\) sind alle von Null verschieden. \\
+			QR-Zerlegung wird verwendet um überbestimmte lineare Gleichungssysteme im Sinne der kleinsten Fehlerquadrate zu lösen.
 		
 	\end{enumerate}

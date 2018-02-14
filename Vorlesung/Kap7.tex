@@ -1,26 +1,70 @@
 % !TeX spellcheck = de_AT_frami
-\section{Numerische Integration}
+\section{Ausgleichsrechnung und Approximation}
 	\begin{enumerate}
 		\item \textbf{Was bedeutet der Begriff \textit{Methode der kleinsten Fehlerquadrate}?} \\
-		
+			Die Summe der Fehlerquadrate
+			\begin{align*}
+				\sum_{i=0}^{m}(f(x_i)-y_i)^2
+			\end{align*}
+			soll minimal sein.
 		\item \textbf{Was sind Gründe eine Funktion oder ein Polynom nicht direkt durch die Punkte hindurch zu legen, sondern dazwischen hindurch?} \\
+			Die Werte \(y_i\) sind mit Fehlern behaftet (Rundungsfehler, Messfehler, Modellfehler). Zudem sind meist mehr Datenpunkte gegeben, als für eine eindeutige Bestimmung der Modellparameter \(a\)  der Modellfunktion \(f\) notwendig sind. Somit gibt es im Allgemeinen keine Modellfunktion \(f\), die exakt durch sämtliche Datenpunkte hindurchpasst.
 		
 		\item \textbf{Was bedeutet der Begriff \textit{Modellfunktion}?} \\
+			Die Modellfunktion
+			\begin{align*}
+				f:\mathbb{R}^d\times\mathbb{R}^{n+1}\rightarrow\mathbb{R}:y=f(x_1,\dots,x_d,a_0,\dots,a_n)=f(x,a_0,\dots,a_n)
+			\end{align*}
+			hängt von den Inputdaten \(x=(x_1,\dots,x_d)\) und von sogenannten Modellparametern \(a=(a_0,\dots,a_n)\) ab und ist eine (möglichst einfache) Funktion, die den Zusammenhang zwischen den Inputdaten \(x_i\) und den Outputdaten \(y_i\) beschreiben soll.
 		
 		\item \textbf{Erklären Sie den Begriff \textit{lineare Ausgleichsrechnung}. Wie lässt sich hier die Modellfunktion schreiben?} \\
+			Bei einer linearen Ausgleichsrechnung hängt die Modellfunktion \(f\) für festes \(x\) nur linear von den Modellparametern \(a_0,\dots,a_n\) ab. Dadurch lässt sich \(f\) als Linearkombination aus linear unabhängigen (aber nicht unbedingt linearen) Funktionen \(f_0,\dots,f_n\) schreiben.
+			\begin{align*}
+				\text{Fa}=\text{y}
+			\end{align*}
+			Sollte \(f\) linear unabhängig sein, kann man obige Gleichung im Sinne der kleinsten Fehlerquadrate gelöst werden.
+			\begin{align*}
+				\text{Suche } a_0,\dots,a_n,\text{ sodass } ||\text{Fa-y}||^2=\sum_{i=0}^{m}\left(F_{i*}a-y_i\right)^ \text{minimal.}
+			\end{align*}
 		
 		\item \textbf{Erklären Sie den Begriff \textit{nichtlineare Ausgleichsrechnung}.} \\
+			Bei einer nichtlinearen Ausgleichsrechnung hängt die  Modellfunktion \(f\) für festes \(x\) nichtlinear von den Modellparametern \(a_0,\dots,a_n \) ab. Setzt man die Datenpunkte \((x_0,y_0),\dots,(x_m,y_m)\) in die Modellfunktion ein erhält man ein überbestimmtes, nichtlineares Gleichungssystem
+			\begin{align*}
+				f(x_0,a_0,\dots,a_n)-y_0 & =0     \\
+				f(x_1,a_0,\dots,a_n)-y_1 & =0     \\
+				                        & \hspace{0.16cm}\vdots \\
+				f(x_m,a_0,\dots,a_n)-y_m & =0
+			\end{align*}
 		
 		\item \textbf{Worin besteht der Unterschied zwischen \textit{linearer} und \textit{nichtlinearer Ausgleichsrechnung}?} \\
+			In der linearen/nichlinearen Abhängigkeit der Modellfunktion \(f\) von den Modellparametern \(a_0,\dots,a_n\).
 		
 		\item \textbf{Sie legen eine Ausgleichsparabel zwischen den Punkten hindurch. Ist dies lineare oder	nichtlineare Ausgleichsrechnung?} \\
+			linear
 		
-		\item \textbf{Welche zwei gegensätzlichen Ziele werden bei den \textit{glättenden Splines} betrachtet bzw. optimiert?} \\
+		\item \textbf{Welche zwei gegensätzlichen Ziele werden bei den \textit{glättenden Splines} betrachtet bzw. optimiert?}
+			\begin{enumerate}
+				\item[(1)] Die Splinefunktion \(s\) soll "möglichst gut" zwischen den Datenpunkten hindurchpassen. \\
+							D.h. es soll die Summe \(\sum_{i=0}^{n}\left(y_i-s(x_i)\right)^2\) der Fehlerquadrate möglichst klein sein.
+				\item[(2)] Die Splinefunktion \(s\) soll "möglichst glatt" sein, d.h. die potentielle Energie bzw. die Gesamtkrümmung bzw. das Integral \(\int_{x_0}^{x_n}\left(s''(x)\right)^2\) soll möglichst klein sein.
+			\end{enumerate}
 		
 		\item \textbf{Was bedeutet ein Wert des \textit{Glättungsparameters} \(\mathbf{\lambda}\) nahe 0 bzw. nahe 1?} \\
+			Obige widersprüchliche Ziele werden zum Optimierungsproblem
+			\begin{align*}
+				\lambda\cdot\sum_{i=0}^{n}\left(y_i-s(x_i)\right)^2+\left(1-\lambda\right)\cdot\int_{x_0}^{x_n}\left(s''(x)\right)^2 \rightarrow \text{ min,} \quad \lambda\in(0,1]
+			\end{align*}
+			Verknüpft, wobei \(\lambda\) zwischen ihnen Gewichtet.
+			\begin{itemize}
+				\item \(\lambda\) nahe bei 0 bedeutet, dass die Glattheit des Splines sehr wichtig ist.
+				\item \(\lambda\) nahe bei 1 bedeutet, dass kleine Fehlerquadrate wichtiger sind.
+			\end{itemize}
+			Man wählt also zwischen \(s\rightarrow\)Ausgleichsgerade für \(\lambda\rightarrow 0\) und ungeglätteten Spline für \(\lambda \rightarrow 1\).
 		
 		\item \textbf{Was passiert, wenn man \(\mathbf{\lambda=1}\) nimmt?} \\
+			Bei \(\lambda=0\) wäre jede Funktion \(s\) mit \(s''=0\) Lösung des Optimierungsproblems, da dann der Fehler völlig egal wäre. Daher wird der Fall nicht betrachtet.\\
+			Allerdings gilt: \(s\rightarrow\)Ausgleichsgerade für \(\lambda\rightarrow 0\).
 		
 		\item \textbf{Was passiert, wenn man \(\mathbf{\lambda}\) gegen 0 gehen lässt?} \\
-
+			Bei \(\lambda=1\) ist die potentielle Energie bzw. Glattheit egal und nur die Fehlerquadrate wichtig. In diesem Fall erhalten wir wieder den üblichen Spline, der exakt durch die Datenpunkte geht.
 	\end{enumerate}
