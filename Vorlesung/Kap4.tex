@@ -92,7 +92,37 @@
 		\end{align*}
 		
 		\item \textbf{Was für Abschätzungen gelten für den Fehler einer Quadraturformel bzw. einer zusammengesetzten Quadraturformel? Was muss der Integrand $f$ dabei erfüllen?} \\
-			Siehe 4.5 Fehler einer Quadraturformel, Satz 4.3 Fehler einer Quadraturformel und Satz 4.4 Fehler von zusammengesetzten Quadraturformeln.
+			\textbf{Quadraturformel:}\\
+			Gegeben sei ein Intervall \([a,b]\) und die Quadraturformel \(Q(f,[a,b])=h\sum_{i=1}^{s}b_if(a+c_ih)\) mit Schrittweite \(h=b-a\). Für stetige Funktionen \(f\in\mathscr{C}([a,b])\) definiert man den Fehler der Quadratformel als
+			\begin{align*}
+				E(f)=I(f)-Q(f)=\int_{a}^{a+h}f(x)\dif{x}-h\sum_{i=1}^{s}b_if(a+c_ih)
+			\end{align*}
+			\begin{itemize}
+				\item Für \(f\in\mathscr{C}^{p+1}(f[a,b])\) gilt
+					\begin{align*}
+						E(f)=Ch^{p+1}+\mathscr{O}(h^{p+1}) \quad &\text{bzw.} \quad \abs{E(f)}\leq Ch^{p+1}\\
+						C=ef^{(p)}&, \quad e=\frac{1}{p!}\left(\frac{1}{p+1}-\sum_{i=1}^{s}b_ic_i^p\right)
+					\end{align*}
+				\item Es sei \(f\in\mathscr{C}^p([a,b])\). Mit einer von h unabhänigen Konstante \(C>0\) gilt
+					\begin{align*}
+						\abs{E(f)}\leq Ch^{p+1}
+					\end{align*}
+				\item Falls nur \(f\in\mathscr{C}^k([a,b])\) mit \(k<p\), gilt \(\abs{E(f)}\leq Ch^{k+1}\) mit von \(h\) unabhängigem \(C>0\).
+			\end{itemize}
+			
+			\textbf{zusammengesetzte Quadraturformel:}\\
+			Es sei \(Q=(b_i,c_i)_{i=1}^s\) eine Quadraturformel mit Ordnung \(p\), \(S_Q\) die damit zusammengesetzte Quadraturformel.
+			\begin{itemize}
+				\item Für \(f\in\mathscr{C}^{p+1}(f[a,b])\) und \(C\) unabhängig von h gilt
+					\begin{align*}
+						\int_{a}^{b}f(x)\dif{x}-S_Q(f,h,[a,b])=Ch^p+\mathcal{O}(h^{p+1}).
+					\end{align*}
+				\item Für \(f\in\mathscr{C}^p([a,b])\) und \(C>0\) unabhängig von \(h\) gilt die Fehlerabschätzung
+					\begin{align*}
+						\abs{\int_{a}^{b}f(x)\dif{x}-S_Q(f,h,[a,b])}\leq Ch^p.
+					\end{align*}
+				\item Falls für \(f\in\mathscr{C}^q([a,b])\), \(q<p\), dann gilt auch nur \(\abs{\int_{a}^{b}f(x)\dif{x}-S_Q(f,h,[a,b])}\leq Ch^q\) mit \(C>0\) unabhängig von \(h\) (Ordnungsreduktion).
+			\end{itemize} 
 		
 		\item \textbf{Was sind \textit{symmetrische Quadraturformeln} und welche Eigenschaft besitzen sie?} \\
 			Eine Quadraturformel \(b_i,c_i)^s_{i=1}\) heißt symmetrisch, wenn für die Knoten und Gewichte folgendes gilt:
