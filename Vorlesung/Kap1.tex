@@ -70,7 +70,7 @@
 		\item \textbf{Wie ist der relative Rundungsfehler definiert?} \\
 		S. 6
 		\begin{align*}
-			\frac{|\text{rd}(x)-x|}{|x|}\leq \frac{2^{-\text{M}-1}\cdot2^e}{\text{a}\cdot 2^e}\underset{\text{a}\in[1,2)}{\leq}2^{-\text{M}-1}=:\texttt{eps} \\
+			\frac{\abs{\text{rd}(x)-x}}{\abs{x}}\leq \frac{2^{-\text{M}-1}\cdot2^e}{\text{a}\cdot 2^e}\underset{\text{a}\in[1,2)}{\leq}2^{-\text{M}-1}=:\texttt{eps} \\
 			\text{rd}(a) \text{ durch rounding to the nearest even} 
 		\end{align*}
 		
@@ -80,15 +80,15 @@
 				
 		\item \textbf{Was ist die relative/absolute Kondition eines Problems?}
 			\begin{align*}
-				\frac{|f(\tilde{x})-f(x)|}{|f(x)|} &\leq \kappa_{\text{rel.}}\cdot\varepsilon, \quad \kappa_{\text{rel.}} > 0 \\
-				|f(\tilde{x})-f(x)| &\leq \kappa_{\text{abs.}}\cdot\delta, \quad \kappa_{\text{abs.}} > 0
+				\frac{\abs{f(\tilde{x})-f(x)}}{\abs{f(x)}} &\leq \kappa_{\text{rel.}}\cdot\varepsilon, \quad \kappa_{\text{rel.}} > 0 \\
+				\abs{f(\tilde{x})-f(x)} &\leq \kappa_{\text{abs.}}\cdot\delta, \quad \kappa_{\text{abs.}} > 0
 			\end{align*}
 		Wenn \(\kappa_{\text{rel.}}\) klein ist werden Inputfehler nicht übermäßig verstärkt und \(f\) gilt als gut konditioniert.
 		\item \textbf{Was bedeuten die Begriffe Konsistenz und Konsistenzordnung?} \\
 			Def 1.3 Konsistenz, Konsistenzordnung \\
 			Ein numerisches Verfahren \(f_h\) mit Diskretisierungsweite h zur Bestimmung einer Näherung von \(f_h(x)\) an \(f(x)\) ist konsistent, falls gilt
 			\begin{align*}
-				||f_h(x)-f(x)||\leq \text{C}\,h^\text{p}
+				\norm{f_h(x)-f(x)}\leq \text{C}\,h^\text{p}
 			\end{align*}
 			wobei die Konstante \(\text{C}>0\) nicht von h abhängen darf und \(p\ge1\). Der Exponent \(p\) ist dann die Konsistenzordnung und es gilt \(f_h\rightarrow f\) für \( h \rightarrow 0\), falls \(f_h\) exakt ausgewertet wird. 
 		
@@ -100,7 +100,7 @@
 		Ein numerisches Verfahren \(f\) heißt stabil, falls bei der numerischen Auswertung \(\tilde{f}(x)\) des Verfahrens Fehler wie Rundungsfehler, Abbruchfehler und Verfahrensfehler von Teilschritten nicht	übermäßig verstärkt werden im Vergleich zu dem durch die relative Kondition \(\kappa_{rel}\) des Problems verursachten Fehler. \\
 		Für die Differenz zwischen numerischer Auswertung \(\tilde{f}(x)\) mit obigen Fehlern und exakter Auswertung \(f(x)\) gilt dann
 		\begin{align*}
-			||\tilde{f}(x)-f(x)||\leq \text{C}\cdot\kappa_{rel.}\cdot||f(x)||\cdot\texttt{eps}, \quad \text{C} > 0 \text{ klein.}
+			\norm{\tilde{f}(x)-f(x)}\leq \text{C}\cdot\kappa_{rel.}\cdot\abs{f(x)}\cdot\texttt{eps}, \quad \text{C} > 0 \text{ klein.}
 		\end{align*}
 		Ein numerisches Verfahren ist insbesondere dann stabil, wenn alle seine Teilschritte gut konditioniert sind.
 		

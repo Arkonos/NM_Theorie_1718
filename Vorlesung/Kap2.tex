@@ -15,9 +15,9 @@
 				\begin{minipage}{.4\textwidth}
 					\centering
 					\begin{align*}
-						|V(h)|&\leq C_\text{V} h \\
-						|R(h)|&\leq C_\text{R} \frac{\texttt{eps}}{h} \\
-						|\text{err}(h)|&\leq C_\text{V} h + C_\text{R} \frac{\texttt{eps}}{h}
+						\abs{V(h)}&\leq C_\text{V} h \\
+						\abs{R(h)}&\leq C_\text{R} \frac{\texttt{eps}}{h} \\
+						\abs{\text{err}(h)}&\leq C_\text{V} h + C_\text{R} \frac{\texttt{eps}}{h}
 					\end{align*}
 				\end{minipage} %				
 				\begin{minipage}{.5\textwidth}
@@ -27,7 +27,7 @@
 			\end{figure}			
 		\item \textbf{Wie lässt sich mit Hilfe eines logarithmischen Plots das Verhalten von Verfahrensfehler und Rundungsfehler ablesen? Wie kann man die optimale Schrittweite \(\mathbf{h_{opt}}\) ablesen?}
 			\begin{align*}
-				\log |\text{err}|=\log \left( C_\text{V} h + C_\text{R} \frac{\texttt{eps}}{h}\right) \approx 
+				\log \abs{\text{err}}=\log \left( C_\text{V} h + C_\text{R} \frac{\texttt{eps}}{h}\right) \approx 
 					\begin{cases}
 						\log\left(C_\text{R}\texttt{eps}h^{-q}\right) =-q\log h + \log C_\text{R}+\log\texttt{eps}  , & \text{links von }  \text{h}_\text{opt},\\
 						\log\left(C_\text{V}\texttt{eps}h^p\right) =p\log h + \log C_\text{V} , & \text{rechts von }  \text{h}_\text{opt}.		\\	
@@ -43,7 +43,7 @@
 			\end{align*}
 		\item \textbf{Wie lässt sich die optimale Schrittweite \(\mathbf{h_{opt}}\) aus dem Verfahrensfehler \(\mathbf{V(h)}\) und dem Rundungsfehler \(\mathbf{R(h)}\) bestimmen?}
 			\begin{align*}
-				|\text{err}(h)|&\leq C_\text{V} h + C_\text{R} \frac{\texttt{eps}}{h}
+				\abs{\text{err}(h)}&\leq C_\text{V} h + C_\text{R} \frac{\texttt{eps}}{h}
 			\end{align*}
 			Der Fehler soll minimal sein und somit \(C_\text{V} h + C_\text{R} \frac{\texttt{eps}}{h}=\text{min}.\) Dies führt zu \(C_\text{V} h^2 + C_\text{R}\texttt{eps}=0\) und somit
 			\begin{align*}

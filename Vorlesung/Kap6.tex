@@ -27,12 +27,12 @@
 				\text{löse } f'(x^{(k)})\cdot \Delta^{(k)} &= -f(x^{(k)}), \quad \text{mit } \Delta x^{(0)}=x^{(1)}-x^{(0)} \\
 				x^{(k+1)} &= x^{(k)} +  \Delta x^{(k)}, \quad k\geq 0
 			\end{align*}
-			Falls \(||\Delta x^{(k)}||\leq\text{TOL} \) wird das Verfahren abgebrochen und \(x^{(k+1)}\) als numerisches Ergebnis Akzeptiert.
+			Falls \(\norm{\Delta x^{(k)}}\leq\text{TOL} \) wird das Verfahren abgebrochen und \(x^{(k+1)}\) als numerisches Ergebnis Akzeptiert.
 		
 		\item \textbf{Wie schnell konvergiert das Newton-Verfahren? Welche Voraussetzungen muss der Startwert erfüllen?} \\
 			Die Funktion \(f\) sei in einer Umgebung von \(x^\star\) zweimal stetig differenzierbar und es gelte \(f(x^\star) =0\) und \(\det f'(x^\star)\neq 0\). Dann gilt
 			\begin{align*}
-				||x^{(k+1)}-x^\star||\leq C\cdot ||x^{(k)}-x^\star||^2.
+				\norm{x^{(k+1)}-x^\star}\leq C\cdot \norm{x^{(k)}-x^\star}^2.
 			\end{align*}
 		
 		\item \textbf{Wie ist das Gauß-Newton-Verfahren definiert?}
@@ -41,17 +41,17 @@
 			\text{löse } f'(x^{(k)})^\text{T}f'(x^{(k)}) \cdot \Delta^{(k)} &= -f(x^{(k)})^\text{T}f(x^{(k)}), \quad \text{mit } \Delta x^{(0)}=x^{(1)}-x^{(0)} \\
 			x^{(k+1)} &= x^{(k)} +  \Delta x^{(k)}, \quad k\geq 0
 			\end{align*}
-			Falls \(||\Delta x^{(k)}||\leq\text{TOL} \) wird das Verfahren abgebrochen und \(x^{(k+1)}\) als numerisches Ergebnis Akzeptiert.
+			Falls \(\norm{\Delta x^{(k)}}\leq\text{TOL} \) wird das Verfahren abgebrochen und \(x^{(k+1)}\) als numerisches Ergebnis Akzeptiert.
 		
 		\item \textbf{Wie ist das Konvergenzverhalten des Gauß-Newton-Verfahrens?} \\
 			Es gibt Konstanten \(C_1>0\) und \(C_2>0\), sodass in der Nähe von \(x^\star\) gilt:
 			\begin{align*}
-				||x^{(k+1)}-x^\star||\leq C_1\cdot f(x^\star)\cdot ||x^{(k)}-x^\star|| + C_2\cdot ||x^{(k)}-x^\star||^2.
+				\norm{x^{(k+1)}-x^\star}\leq C_1\cdot f(x^\star)\cdot \norm{x^{(k)}-x^\star} + C_2\cdot \norm{x^{(k)}-x^\star}^2.
 			\end{align*}
 			Was liest man daraus?
 			\begin{enumerate}
-				\item[(1)] Die Konvergenz ist im Allgemeinen nur linear wegen \(C_1\cdot f(x^\star)\cdot ||x^{(k)}-x^\star||\).
-				\item[(2)] Falls \(f(x^\star)=0\) (Die Gleichungen sind in diesem Fall kompatibel, d.h. nicht widersprüchlich), dann ist die Konvergenz sogar quadratisch, weil \(C_1\cdot f(x^\star)\cdot ||x^{(k)}-x^\star||\) wegfällt.
+				\item[(1)] Die Konvergenz ist im Allgemeinen nur linear wegen \(C_1\cdot f(x^\star)\cdot \norm{x^{(k)}-x^\star}\).
+				\item[(2)] Falls \(f(x^\star)=0\) (Die Gleichungen sind in diesem Fall kompatibel, d.h. nicht widersprüchlich), dann ist die Konvergenz sogar quadratisch, weil \(C_1\cdot f(x^\star)\cdot \norm{x^{(k)}-x^\star}\) wegfällt.
 				\item[(3)] Falls \(f(x^\star)\) zu groß ist, dann divergiert das Verfahren.
 			\end{enumerate}
 		

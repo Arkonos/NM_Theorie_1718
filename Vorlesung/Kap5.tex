@@ -4,13 +4,13 @@
 		\item \textbf{Wie ist die LU-Zerlegung definiert?} \\
 			Es sei A eine invertierbare \(n\times n\)-Matrix. Dann existieren drei ebenfalls invertierbare Matrizen und zwar eine Permutationsmatrix P, eine untere Dreieckmatrix L und eine obere Dreiecksmatrix U, d.h.
 			\begin{align*}
-				L = \begin{bmatrix}
+				\text{L} = \begin{bmatrix}
 					1 & 0 & \dots & 0 \\
 					\ell_{21} & \ddots & \ddots & \vdots \\
 					\vdots & \ddots & \ddots & 0 \\
 					\ell_{n1} & \dots & \ell_{n,n-1} & 1
 				\end{bmatrix}, \quad
-				U = \begin{bmatrix}
+				\text{U} = \begin{bmatrix}
 					u_{11} & u_{12} & \dots & u_{1n}\\
 					0 & \ddots & \ddots & \vdots \\
 					\vdots & \ddots & \ddots & u_{n-1,n} \\
@@ -19,7 +19,7 @@
 			\end{align*}
 			mit \(u_{ii}\neq0,\,i=1,\dots,n\), sodass
 			\begin{align*}
-				PA=LU
+				\text{PA}=\text{LU}
 			\end{align*}
 			gilt. Diese Zerlegung heißt LU-Zerlegung. Die Multiplikation mit P von links entspricht einer Vertauschung der Zeilen von A wegen der Spaltenpivotsuche.
 		
@@ -43,7 +43,7 @@
 				\end{bmatrix}^\text{T}\) und wendet darauf die Vertauschen an.
 			\end{itemize}
 		
-		\item \textbf{Wie löst man die LU-Zerlegung lineare Gleichungssysteme \(\mathbf{AX=b}\)?} \\
+		\item \textbf{Wie löst man die LU-Zerlegung lineare Gleichungssysteme \(\mathbf{AX=b}\)?}
 			\begin{enumerate}
 				\item[Schritt 1:] Vertauschen der Elemente von b mit Hilfe von IP \(\Rightarrow\tilde{\text{b}}\)
 				\item[Schritt 2:] Vorwärtssubstitution mit L und \(\tilde{\text{b}}\) \\
@@ -54,7 +54,7 @@
 		
 		\item \textbf{Wie berechnet man \(\mathbf{\det A}\) mit Hilfe der LU-Zerlegung?}
 			\begin{align*}
-				\det{A}=u_{11}\cdot u_{22}\cdots u_{nn}\cdot\text{IP[n]}
+				\det{\text{A}}=u_{11}\cdot u_{22}\cdots u_{nn}\cdot\text{IP[n]}
 			\end{align*}
 		
 		\item \textbf{Wie groß ist der Rechenaufwand der LU-Zerlegung und für das Auflösen eines linearen Gleichungssystems?}
@@ -108,54 +108,54 @@
 			\end{align*}
 		
 		\item \textbf{Wie ist die Matrixnorm allgemein definiert?} \\
-			Gegeben sei ein Vektorraum \(V\). Eine Norm \(V\) ist eine Abbildung \(||\cdot||:V\rightarrow\mathbb{R}\) mit den folgenden Eigenschaften:
+			Gegeben sei ein Vektorraum \(V\). Eine Norm \(V\) ist eine Abbildung \(\norm{\cdot}:V\rightarrow\mathbb{R}\) mit den folgenden Eigenschaften:
 			\begin{itemize}
-				\item[(i)] \(||x||\geq 0,\quad ||x||=0\Rightarrow x=0\),
-				\item[(ii)] \(||\lambda x||=|\lambda|\cdot||x||\),
-				\item[(iii)] \(||x+y||\leq||x||+||y||\). (Dreiecksungleichung)
+				\item[(i)] \(\norm{x}\geq 0,\quad \norm{x}=0\Rightarrow x=0\),
+				\item[(ii)] \(\norm{\lambda x}=\abs{\lambda}\cdot\norm{x}\),
+				\item[(iii)] \(\norm{x+y}\leq\norm{x}+\norm{y}\). (Dreiecksungleichung)
 			\end{itemize}
 		
 		\pagebreak
 		
-			\item \textbf{Wie berechnet man \(\mathbf{||\text{A}||_1}\), \(\mathbf{||\text{A}||_2}\) und \(\mathbf{||\text{A}||_\infty}\) ?} \\
+			\item \textbf{Wie berechnet man \(\mathbf{\norm{\text{A}}_1}\), \(\mathbf{\norm{\text{A}}_2}\) und \(\mathbf{\norm{\text{A}}_\infty}\) ?} \\
 			\begin{itemize}
 				\item Es sei A eine \(m\times n\)-Matrix.
 					Die Matrixnorm für die 1-Norm
 					\begin{align*}
-						||\text{A}||_1=\underset{1\leq j\leq n}{\max}\left( \sum_{i=1}^{m}|a_{ij}|\right) 
+						\norm{\text{A}}_1=\underset{1\leq j\leq n}{\max}\left( \sum_{i=1}^{m}\abs{a_{ij}}\right) 
 					\end{align*}
 					ist die maximale Spaltenbetragssumme. Merkregel: 1 steht wie eine Spalte.
 				\item Die Matrixnorm für die \(\infty\)-Norm
 					\begin{align*}
-						||\text{A}||_\infty=\underset{1\leq i\leq m}{\max}\left( \sum_{j=1}^{n}|a_{ij}|\right)
+						\norm{\text{A}}_\infty=\underset{1\leq i\leq m}{\max}\left( \sum_{j=1}^{n}\abs{a_{ij}}\right)
 					\end{align*}
 					ist die maximale Zeilenbetragssumme. Merkregel: \(\infty\) liegt wie eine Zeile.
 				\item Die Matrixnorm für die 2-Norm (euklidische Norm):
 					\begin{align*}
-						||\text{A}||_2=\sqrt{\text{größter Eigenwert von A}^\text{T}\text{A}}
+						\norm{\text{A}}_2=\sqrt{\text{größter Eigenwert von A}^\text{T}\text{A}}
 					\end{align*}
 			\end{itemize}		
 			
 		\item \textbf{Wie ist die Norm von \(\mathbf{A^{-1}}\) definiert?} \\
 			\begin{align*}
-				||\text{A}^{-1}||:=\left(\underset{x\neq0}{\text{inf}}\frac{||\text{Ax}||}{||\text{x}||}\right)^{-1} = \left(\underset{||\text{y}||=1}{\text{inf}}||\text{Ay}||\right)^{-1}
+				\norm{\text{A}^{-1}}:=\left(\underset{x\neq0}{\text{inf}}\frac{\norm{\text{Ax}}}{\norm{\text{x}}}\right)^{-1} = \left(\underset{\norm{\text{y}}=1}{\text{inf}}\norm{\text{Ay}}\right)^{-1}
 			\end{align*}
 		
 		\item \textbf{Wie ist die Kondition einer linear Abbildung bzw. einer Matrix A definiert?}
 			\begin{align*}
-				\kappa(\text{A}):=||\text{A}||\cdot||\text{A}^{-1}||
+				\kappa(\text{A}):=\norm{\text{A}}\cdot\norm{\text{A}^{-1}}
 			\end{align*}
 		
 		\item \textbf{Was gilt für den relativen Fehler der Lösung eines linearen Gleichungssystems?}
 			\begin{align*}
-				\frac{||\tilde{\text{x}}-\text{x}||}{||\text{x}||}\leq \frac{\kappa(\text{A})}{1-\varepsilon_\text{A}\cdot\kappa(\text{A})}(\varepsilon_\text{A}+\varepsilon_\text{b})
+				\frac{\norm{\tilde{\text{x}}-\text{x}}}{\norm{\text{x}}}\leq \frac{\kappa(\text{A})}{1-\varepsilon_\text{A}\cdot\kappa(\text{A})}(\varepsilon_\text{A}+\varepsilon_\text{b})
 			\end{align*}
 		
 		\item \textbf{Welche Eigenschaften besitzt die Kondition einer Matrix?}
 			\begin{enumerate}
 				\item[(1)] \(\kappa(\text{A})\geq1\).
 				\item[(2)] Für \(\alpha\neq0\) ist \(\kappa(\alpha\text{A})=\kappa(\text{A})\)
-				\item[(3)] \(\kappa(\text{A})=\frac{\sup_{||y||_2=1}||\text{Ay}||_2}{\inf_{||y||_2=1}||\text{Ay}||_2}=
+				\item[(3)] \(\kappa(\text{A})=\frac{\sup_{\norm{y}_2=1}\norm{\text{Ay}}_2}{\inf_{\norm{y}_2=1}\norm{\text{Ay}}_2}=
 				\frac{\sqrt{\lambda_{\max}}}{\sqrt{\lambda_{\min}}}\)
 			\end{enumerate}
 		
@@ -173,7 +173,7 @@
 		
 		\item \textbf{Wie lässt sich die Kondition einer Matrix geometrisch interpretieren?} \\
 			Verzerrungsfaktor:
-			Es sei \(\varepsilon=\left\lbrace \text{A}\cdot\text{y}:||\text{y}||_2=1 \right\rbrace \) jene Ellipse, die durch Anwendung der Matrix auf A auf alle Vektoren mit Länge 1 erzeugt wird. Dann gilt:
+			Es sei \(\varepsilon=\left\lbrace \text{A}\cdot\text{y}:\norm{\text{y}}_2=1 \right\rbrace \) jene Ellipse, die durch Anwendung der Matrix auf A auf alle Vektoren mit Länge 1 erzeugt wird. Dann gilt:
 			\begin{center}
 				\(\kappa(\text{A}) \) = Umkreisradius/Inkreisradius der Ellipse \(\varepsilon\) = Verhältnis der Hauptachsen von \(\varepsilon\) = Verzerrungsfaktor von A.
 			\end{center}

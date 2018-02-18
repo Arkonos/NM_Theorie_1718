@@ -55,17 +55,17 @@
 			\begin{align*}
 				\overline{p}(x)=\sum_{i=0}^{j-1}\left( y_i\,\ell_i(x)\right) + (y_j+\varepsilon_j)+\sum_{i=j+1}^{n}\left( y_i\,\ell_i(x)\right).
 			\end{align*}
-			Der Fehler \(\varepsilon_i\) wird also um den Faktor \(|\ell_i|\) verstärkt.
+			Der Fehler \(\varepsilon_i\) wird also um den Faktor  \(\abs{\ell_i}\) verstärkt.
 			Wenn alle Knoten mit Fehlern verseht sind ergibt sich
 			\begin{align*}
 				\overline{p}(x)=p(x)+\sum_{i=0}^{n}\left( \varepsilon_i\,\ell_i \right) .
 			\end{align*}
 			Falls die einzelnen Fehler durch \(\varepsilon_i\le\text{M}\) beschränkt sind erhält man für den absoluten Fehler die Abschätzung
 			\begin{align*}
-				\underbrace{|\overline{p}(x)-p(x)|}_\text{abs. Fehler Output}\leq \text{M}\underbrace{\sum_{i=0}^{n}\overbrace{|\ell_i(x)|}^{\kappa_{\text{abs},i}(x)}}_{\kappa_\text{abs}(x)}
+				\underbrace{\abs{\overline{p}(x)-p(x)}}_\text{abs. Fehler Output}\leq \text{M}\underbrace{\sum_{i=0}^{n}\overbrace{\abs{\ell_i(x)}}^{\kappa_{\text{abs},i}(x)}}_{\kappa_\text{abs}(x)}
 				= \text{M}\cdot\kappa_\text{abs}(x).
 			\end{align*}
-			Wobei \(\kappa_{\text{abs},i}=|\ell_i(x)|\) der Verstärkungsfaktor für den Datenfehler in der Stützstelle \(i\) und die Lebesgue-Funktion \(\kappa_\text{abs}=\lambda_n(x)=\sum_{i=0}^{n}|\ell_i(x)|\) die absolute Kondition für die Polynominterpolation ist. Die schlechteste Konditionszahl \(\lambda_n(x)\) im Intervall \([\text{min}_ix_i,\text{max}_ix_i]\) nennen wir Lebesgue-Konstante und erhalten sie durch
+			Wobei \(\kappa_{\text{abs},i}=\abs{\ell_i(x)}\) der Verstärkungsfaktor für den Datenfehler in der Stützstelle \(i\) und die Lebesgue-Funktion \(\kappa_\text{abs}=\lambda_n(x)=\sum_{i=0}^{n}|\ell_i(x)|\) die absolute Kondition für die Polynominterpolation ist. Die schlechteste Konditionszahl \(\lambda_n(x)\) im Intervall \([\text{min}_ix_i,\text{max}_ix_i]\) nennen wir Lebesgue-Konstante und erhalten sie durch
 			\begin{align*}
 				\underset{x\in[\text{min}_ix_i,\text{max}_ix_i]}{\text{max}} \lambda_n(x):=\Lambda_n.
 			\end{align*}
@@ -81,8 +81,11 @@
 			\end{align*}
 			Somit ergibt sich für den Verfahrensfehler
 			\begin{align*}
-				\prod(x):=|(x-x_0)(x-x_1)\cdots(x-x_n)|.
+				\prod(x):=\abs{(x-x_0)(x-x_1)\cdots(x-x_n)}.
 			\end{align*}
+			
+		\pagebreak
+			
 		\item \textbf{Wie sind die Tschebyscheff-Polynome definiert? Welche Eigenschaften haben sie?} \\
 			Die durch Abbildung \(T_n:[-1,1]\rightarrow[-1,1]\) mit
 			\begin{align*}
@@ -101,6 +104,11 @@
 					\begin{align*}
 						t_k^{(n)}=\cos\left( \frac{2k-1}{2n}\pi \right),\, k=1,\dots,n. 
 					\end{align*}
+				\item[(-)] Minmax-Eigenschaft: Gegeben seien \(n+1\) verschiedene Stützstellen \(x_i, i=0,\dots,n\) im Intervall \([-1,1]\). Die Maximumsnorm des Verfahrensfelher
+				\begin{align*}
+					\norm{\prod(x)}_\infty=\underset{x\in[-1,1]}{\max}\abs{(x-x_0)(x-x_1)\cdots(x-x_n)}
+				\end{align*}
+				nimmt einen minimalen Wert an, falls \(x_0,x_1,\dots,x_n\) die Nullstellen von \(T_{n+1}(x)\) sind.
 			\end{enumerate}
 		\item \textbf{Wie berechnet man die Knoten für die Tschebyscheff-Interpolationspolynome im Intervall \(\mathbf{[−1,1]}\) bzw. \(\mathbf{[a,b]}\)? Welche Vorteile hat die Verwendung von Tschebyscheff-Knoten im Vergleich zu äquidistanten Stützstellen.} \\
 			\(T_n\) hat \(n\) reelle Nullstellen in \([-1,1]\), nämlich die Tschebyscheff-Knoten
@@ -120,6 +128,8 @@
 		\item \textbf{Wie lässt sich das dividierte Differenzenschema und das Newtonsche Interpolationspolynom verallgemeinern, falls in den Stützstellen auch noch Ableitungen vorgegeben sind?} \\
 			Durch Hermite-Interpolation. Idee: Interpolation durch die Punkte \((x_i,y_i),(x_i+h,y_i+hy_i'),i=0,\dots,n\), und Grenzübergang \(h\rightarrow0\). Führt zu Differenzenschema in dem Punkte doppelt angeschrieben und Werte für die man mit 0 dividieren müsste durch die gegebenen Ableitungen ersetzt werden.
 			
+		\pagebreak			
+		
 		\item \textbf{Wie wird mit stückweise konstanten Funktionen interpoliert?} \\
 			Das Intervall \([a,b]\) wird in \(n\) Intervalle unterteilt, wobei die Intervallsgrenzen genau zwischen den Knoten liegen. Die Treppenfunktion definiert sich aus den Intervallen \(I_i\) und den Stützstellen \(x_i\) zu
 			\begin{align*}
@@ -134,8 +144,6 @@
 				\centering
 				\includegraphics[width=0.4\linewidth]{Kap3_2}
 			\end{figure}
-		
-		\pagebreak
 		
 		\item \textbf{Wie wird mit stetigen, stückweise linearen Funktionen interpoliert?} \\
 			Wie oben, nur wird \(\chi_i\) ersetzt durch die Hutfunktion
